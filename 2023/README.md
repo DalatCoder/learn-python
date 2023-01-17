@@ -326,3 +326,46 @@ a.append(3) # [1,2,3]
 a.pop() # 3
 a.pop(0) # 1
 ```
+
+### Dictionaries
+
+- Dictionaries are `unordered` mappings
+  for storing objects. Previously we saw
+  how lists store objects in an ordered
+  sequence, dictionaries use a key-value
+  pairing instead.
+- This key-value pair allows users to quickly
+  grab objects without needing to know an
+  index location
+- Dictionaries use curly braces and colons
+  to signify the keys and their associated
+  values: `{'key1': 'value'}`
+
+When to choose a `list` and when to choose a
+`dictionary`?
+
+- `dictionaries`: objects retrieved by `key` name. Unordered and cannot be sorted
+- `lists`: objects retrived by location. Ordered sequence can be indexed or sliced.
+
+```py
+my_dict = {
+    'name': 'Hieu',
+    'age': 23
+}
+
+print(my_dict['name'])
+print(my_dict['age'])
+
+prices_lookup = {
+    'apple': 2.99,
+    'oranges': 1.99,
+    'milk': 5.80
+}
+print(prices_lookup['apple'])
+
+prices_lookup['flower'] = 9.99
+
+prices_lookup.keys()
+prices_lookup.values()
+prices_lookup.items()
+```
