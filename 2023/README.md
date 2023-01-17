@@ -523,3 +523,32 @@ Logical operators
 - `and`
 - `or`
 - `not`
+
+## Python Statements
+
+### If-else
+
+- Let's begin to learn about control flow
+- We often only want certain code to execute
+  when a particular condition has been met
+- To control this flow logic, we use some
+  keywords:
+  - `if`
+  - `elif`
+  - `else`
+- Control flow syntax makes use of colons
+  and indentation (whitespace)
+- This indentation system is crucial to
+  Python and what sets it apart from other
+  programming languages
+
+```py
+loc = 'Bank'
+
+if loc == 'Auto Shop':
+    pass
+elif loc == 'Bank':
+    pass
+else 
+    pass
+```
