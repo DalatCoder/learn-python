@@ -407,3 +407,19 @@ Using when:
 my_list = [1,2,3,1,1,1]
 unique = set(my_list) # {1,2,3}
 ```
+
+### Booleans
+
+- Booleans are operators that allow you
+  to convey `True` or `False` statements
+
+- There are very importatn later on when we
+  deal with control flow and logic
+
+```py
+true = True
+false = False
+
+type(true) # bool
+type(false) # bool
+```
