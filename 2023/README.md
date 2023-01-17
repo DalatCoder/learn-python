@@ -506,3 +506,20 @@ File permissions
 - `a`: only `append` (add on to files)
 - `r+`: reading and writing
 - `w+`: writing and reading (overwrites existing files or creates a new file)
+
+### Comparison Operators
+
+Operators
+
+- `==`
+- `!=`
+- `>`
+- `<`
+- `>=`
+- `<=`
+
+Logical operators
+
+- `and`
+- `or`
+- `not`
