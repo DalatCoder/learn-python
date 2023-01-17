@@ -615,3 +615,50 @@ We can use some statements inside the loop
 - `continue`: goes to the top of the closest
   enclosing loop
 - `pass` does nothing at all
+
+### Useful operators
+
+- `range` is a generator. It is just a special type of function that will generate informatioin instead of saving it all to memory. This a more efficient way of generating these numbers instead of having a giant sorted memory.
+
+```py
+for num in range(2):
+    print(num) # 0 1 2 
+
+l = list(range(1,5)) # [1,2,3,4]
+```
+
+- `enumerate`, get `index` and `value`
+
+```py
+index_count = 0
+
+for letter in 'abcde':
+    print('At index {} the letter is {}'.format(index_count, letter))
+
+    index_count += 1
+
+for index,letter in 'abcde':
+    print(index,letter)
+```
+
+- `zip`, kind of almost like an opposite of `enumerate`. What is does is it zips together
+  to lists.
+
+```py
+mylist1 = [1,2,3]
+mylist2 = ['a','b','c']
+
+for num,cha in zip(mylist1, mylist2):
+    print(num,cha)
+
+l = list(zip(mylist1, mylist2))
+```
+
+- `in`: check if value exists in a list
+
+```py
+'x' in [1,2,3] # False
+'1' in [1,2,3] # True
+'a' in 'hello world' # False
+'k' in { 'k': 1 } # True
+```
