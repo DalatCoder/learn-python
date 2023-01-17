@@ -55,3 +55,58 @@ Create websites
   to handle the backend of a website and user
   data
 - Create interactive dashboards for users
+
+## Python Setup
+
+### Installing Python
+
+- There are many ways to run Python!
+- Later on we'll explore the difference
+  between running a Python `.py` script
+  or running Python code in a notebook
+  environment
+
+Install with Anaconda
+
+- To install Python we will use the free
+  Individual Anaconda distribution
+- This distribution includes Python as well
+  as many other useful libraries, including
+  Jupyter Notebook environment.
+- Anaconda can also easily be installed on
+  to any major OS, Windows, MacOS or Linux
+
+### Running Python code
+
+There are several ways to run Python code.
+
+First, let's discuss the various options
+for development environments
+
+- Text editors
+- Full IDEs
+- Notebook Environments
+
+Text editors:
+
+- General editors for any text file
+- Work with a variety of file types
+- Can be customized with plugins and add-ons
+- Keep in mind, most are not designed
+  with only Python in mind
+
+Full IDEs
+
+- Development Environments designed speccifically for Python
+- Larger programs
+- Only community editions are free
+- Designed specifically for Python, lots
+  of extra functionality
+
+Notebook Environments
+
+- Great for learning
+- See input and output next to each other
+- Support in-line markdown notes,
+  visualizations, videos, and more
+- Special file formats that are not `.py`
