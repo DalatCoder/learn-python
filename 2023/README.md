@@ -2,6 +2,8 @@
 
 [Udemy](https://udemy.com/course/complete-python-bootcamp)
 
+[Notebooks](https://github.com/Pierian-Data/Complete-Python-3-Bootcamp)
+
 ## Introduction
 
 ### Why Python?
@@ -251,3 +253,40 @@ String methods
 - `str.upper()`
 - `str.lower()`
 - `str.split()`
+
+### String formatting for printing
+
+There are multiple ways to format strings
+for printing variables in them. This is
+known as `string interpolation`
+
+Let's explore two methods for this
+
+- `.format()` method
+- `f-strings` (formatted string literals)
+
+Formatting with the `.format()` method
+
+```py
+a = 'String here {} then also {}'.format('1', '2')
+
+a = 'String here {0} then also {0}'.format('1', '2')
+
+a = 'The {q} {b} {f}'.format(f='fox',b='brown',q='quick')
+```
+
+Float formatting follows `{value:width.precision f}`
+
+```py
+result = 100 / 777
+
+print('result {r:1.3f}'.format(r=result)) # 0.129
+```
+
+Using formatted string literals (>3.6)
+
+```py
+name = 'Hieu'
+print('Hello his name is {}'.format(name))
+print(f'Hello his name is {name}')
+```
