@@ -290,3 +290,39 @@ name = 'Hieu'
 print('Hello his name is {}'.format(name))
 print(f'Hello his name is {name}')
 ```
+
+## Lists
+
+- Lists are `ordered sequences` that
+  can hold a variety of object types
+- They use `[]` brackets and commas to
+  seperate objects in the list
+- Lists support `indexing` and `slicing`.
+- Lists can be nseted and aslo have a variety
+  of useful methods that can be called off
+  of them.
+- You can actually mutate or change the
+  elements that are already in a list
+
+```py
+my_list = [1,2,3]
+my_list = [1,'a',true]
+
+my_list[0] # 1
+my_list[1:2] # 2
+my_list[-1] # 3
+
+a = [1,2]
+b = [3,4]
+c = a + b # [1,2,3,4]
+```
+
+Methods
+
+```py
+a = [1,2]
+
+a.append(3) # [1,2,3]
+a.pop() # 3
+a.pop(0) # 1
+```
