@@ -662,3 +662,35 @@ l = list(zip(mylist1, mylist2))
 'a' in 'hello world' # False
 'k' in { 'k': 1 } # True
 ```
+
+### List Comprehensions
+
+List comprehensions are a unique way of
+quickly creating a list with `Python`
+
+If you find yourself using a for loop along
+with `.append()` to create a `list`. List
+comprehensions are a good alternative!
+
+```py
+name = 'Hieu'
+list_name = []
+
+for letter in name:
+    list_name.append(letter)
+```
+
+Using list comprehensions to flatten the for loop
+
+```py
+name = 'Hieu'
+list_name = []
+
+# for letter in name 
+# put letter in front of the for statement
+list_name = [letter for letter in name]
+my_list = [x for x in 'hello world']
+my_list = [x for x in range(0,11)]
+my_list = [x**2 for x in range(0,11)]
+my_list = [x for x in range(0,11) if x%2==0]
+```
