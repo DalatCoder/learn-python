@@ -369,3 +369,16 @@ prices_lookup.keys()
 prices_lookup.values()
 prices_lookup.items()
 ```
+
+### Tuples
+
+- Tuples are very similar to lists. However they have one key difference - `immutability`
+- Once an element is inside a tuple, it can not be reassigned
+- Tuples use parenthesis: `(1,2,3)`
+
+Using tuples when
+
+- Passing around objects in your program and
+  you need to make sure that they don't accidentally get changed
+
+- Provides a very convenient source of what's known as `data integrity`
