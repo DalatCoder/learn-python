@@ -382,3 +382,28 @@ Using tuples when
   you need to make sure that they don't accidentally get changed
 
 - Provides a very convenient source of what's known as `data integrity`
+
+### Sets
+
+- Sets are unordered collections of `unique`
+  elements
+- Meaning there can only be one representative
+  of the same object
+
+```py
+my_set = set()
+
+my_set.add(1) # {1}
+my_set.add(2) # {1,2}
+my_set.add(2) # {1,2}
+```
+
+Using when:
+
+- Casting a list to a set that we only get
+  the unique values
+
+```py
+my_list = [1,2,3,1,1,1]
+unique = set(my_list) # {1,2,3}
+```
