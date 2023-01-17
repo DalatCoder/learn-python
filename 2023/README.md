@@ -552,3 +552,42 @@ elif loc == 'Bank':
 else 
     pass
 ```
+
+### For loop
+
+- Many objects in `Python` are `iterable`,
+  meaning we can iterate over every element in
+  the object.
+- Such as every element in a `list` or every
+  character in a `string`
+- We can use for loops to execute a block of
+ code for every iteration
+- The term `iterable` means you can `iterate`
+  over the object
+
+```py
+my_list = [1,2,3,4,5]
+
+for n in my_list:
+    print(n)
+
+for letter in "Hieu":
+    print(letter)
+
+for n in (1,2,3):
+    print(n)
+
+my_list = [('a',1), ('b',2)]
+
+# tuple unpacking
+for a,b in my_list:
+    print(a,b)
+
+d = {
+    'a': 1,
+    'b': 2
+}
+
+for k,v in d.items():
+    print(k,v)
+```
