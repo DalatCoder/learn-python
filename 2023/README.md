@@ -591,3 +591,27 @@ d = {
 for k,v in d.items():
     print(k,v)
 ```
+
+### While loop
+
+While loops will continue to execute a block
+of code while some condition remains `True`
+
+For example, while my pool is not full, keep
+filling my poll with water. Or while my dogs
+are still hungry, keep feeding my dogs.
+
+```py
+while True:
+    pass
+else:
+    pass
+```
+
+We can use some statements inside the loop
+
+- `break`: breaks out of the current closest
+  enclosing loop
+- `continue`: goes to the top of the closest
+  enclosing loop
+- `pass` does nothing at all
