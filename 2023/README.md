@@ -423,3 +423,86 @@ false = False
 type(true) # bool
 type(false) # bool
 ```
+
+### I/O with basic files in Python
+
+Using jupyter notebook to quickly write a file
+
+```ipynb
+%%writefile myfile.txt
+Hello this is a text file
+this is the second line
+```
+
+Open file
+
+```py
+my_file = open('myfile.txt')
+
+my_file.read() # receive all content
+my_file.read() # ''
+```
+
+There is a `cursor` at the beginning of the
+file. when you read it `.read()`, the `cursor`
+goes all the way to the end of the file and
+you need to `reset` the `cursor` or `seek` it
+back to `0` in order to `.read()` it again.
+
+```py
+my_file = open('myfile.txt')
+
+my_file.read() # receive all content
+
+my_file.seek(0)
+my_file.read() # receive all content
+```
+
+Sometimes, the `.read()` method is not really
+useful because you'd actually want to have
+a list where each single element in the list
+is one line in a string form of the actual
+text file.
+
+```py
+my_file = open('myfile.txt')
+
+my_file.read() # receive all content
+
+my_file.seek(0)
+my_file.readlines() # list of string lines
+```
+
+Close file after working with it
+
+```py
+my_file = open('myfile.txt')
+
+my_file.read() # receive all content
+my_file.close()
+```
+
+Using `with` to automatically close file
+
+```py
+with open('my_file.txt') as my_file:
+    contents = my_file.readlines()
+```
+
+Write files
+
+```py
+with open('my_file.txt', mode='w') as my_file: 
+    my_file.write('Hello World')
+
+with open('my_file.txt', mode='a') as my_file: 
+    my_file.write('Hello World')
+```
+
+File permissions
+
+- `r`: only `read`
+- `w`: only `write`, (will overwrite files or create new)
+- `a`: only `append` (add on to files)
+- `r+`: reading and writing
+- `w+`: writing and reading (overwrites existing files or creates a new file)
