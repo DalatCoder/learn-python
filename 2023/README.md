@@ -110,3 +110,144 @@ Notebook Environments
 - Support in-line markdown notes,
   visualizations, videos, and more
 - Special file formats that are not `.py`
+
+## Python Basics
+
+### Data Types
+
+Some types:
+
+- `int`: Integers, whole numbers
+- `float`: Floating point, numbers with a decimal point
+- `str`: Strings, ordered sequence of characters
+- `list`: Lists, ordered sequence of objects
+- `dict`: Dictionaries, unordered key:values pairs
+- `tup`: Tuples, ordered immutable sequence of objects
+- `set`: Sets, unordered collection of unique objects
+- `bool`: Booleans,logical value
+
+### Numbers
+
+There are two main number types:
+
+- Integers
+- Floating point
+
+Operators:
+
+- `+`
+- `-`
+- `*`
+- `/`
+- `%`: mod
+- `**`: power
+
+### Variable assignments
+
+Rules for variable names
+
+- Names can not start with a number
+- There can be no spaces in the name, use `_` instead
+- Can't use any of these symbols: `'",<>/?|\()!@#$%^&*~-+`
+- It's considered best practice (`PEP8`) that
+  names are lowercase
+- Avoid using words that have special
+  meaning in Python like `list` and `str`
+
+Other notes
+
+- Python uses `Dynamic Typing`
+- This means you can reassign variables to
+  different data types
+- This makes Python very flexible in assigning
+  data types, this is different that other
+  languages that are `Statically Typed`
+
+Pros of Dynamic typing:
+
+- Very easy to work with
+- Faster development time
+
+Cons of Dynamic typing:
+
+- Many result in bugs for unexpected data types
+- You need to be aware of `type()`
+
+### Introduction to Strings
+
+Strings are sequences of characters, using
+the syntax of either single quotes or
+double quotes:
+
+- `'hello'`
+- `"Hello"`
+- `"I don't do that"`
+
+Because strings are `ordered sequences`, it
+means we can using `indexing` and `slicing`
+to grab sub-sections of the string.
+
+Indexing notation uses `[]` notation after the
+string (or variable assigned the string)
+
+Indexing allows you to grab a single
+character from the string
+
+- `h`, `e`, `l`, `l`, `o`
+- `0`, `1`, `2`, `3`, `4`, `5`
+- `0`, `-4`, `-3`, `-2`, `-1`
+
+Slicing allows you to grab a subsection of
+multiple characters, a `slice` of the string.
+
+This has the following syntax: `[start:stop:step]`
+
+- `start`: is a numberical index for the slice start
+- `stop`: is the index you will go up to (but not include)
+- `step` is the size of the `jump` you take
+
+```py
+my_str = 'Hello World'
+
+print(my_str[0]) # 'H'
+print(my_str[1]) # 'e'
+print(my_str[len(my_str) - 1]) # 'd'
+print(my_str[len(my_str) - 2]) # 'l'
+print(my_str[-1]) # 'd'
+print(my_str[-2]) # 'l'
+
+print(my_str[2:]) # 'llo World'
+print(my_str[0:3]) # 'Hel'
+print(my_str[2:3]) # 'l'
+print(my_str[::]) # 'Hello World'
+print(my_str[::2]) # 'Hlo ol'
+print(my_str[::-1]) # 'dlroW olleH'
+```
+
+### String properties and methods
+
+Immutability: you cannot mutate or cannot change
+
+```py
+name = 'Hieu'
+name[1] = 'a' # error
+
+b = name[:1] + 'a' + name[2:]
+
+letter = 'z'
+letter * 10 # zzzzzzzzzzz
+
+letter + 3 # error
+letter + str(3) # z3
+```
+
+Operators
+
+- `+`: concatenation
+- `*`: multiplication of letters
+
+String methods
+
+- `str.upper()`
+- `str.lower()`
+- `str.split()`
