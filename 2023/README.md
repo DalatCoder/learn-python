@@ -2572,3 +2572,28 @@ if __name__ == '__main__':
     title = grab_title()
     print(title)
 ```
+
+### Grabbing all elements of a class
+
+We previously mentioned a big part
+of web scraping with the BS4 library
+is figuring out what string syntax to
+pass into the `soup.select()` method.
+
+```py
+import requests
+import bs4
+
+url = 'https://en.wikipedia.org/wiki/Jonas_Salk'
+
+def grab_classes():
+    result = requests.get(url)
+    soup = bs4.BeautifulSoup(result.text, "lxml")
+    
+    for item in soup.select('.toctext'):
+        yield item.text
+
+if __name__ == '__main__':
+    for text in grab_classes():
+        print(text)
+```
