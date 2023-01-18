@@ -2929,6 +2929,8 @@ smtp_object.ehlo()
 smtp_object.starttls()
 
 email = input('Enter email: ')
+
+# app password
 password = getpass.getpass('Enter password: ')
 
 smtp_object.login(email, password)
@@ -2946,4 +2948,46 @@ smtp_object.sendmail(from_address, to_address, msg)
 
 # close session
 smtp_object.quit()
+```
+
+### Receiving emails
+
+To view received emails with Python, we can use the builtin
+`imaplib` and email libraries in Python
+
+The `imaplib` library has a special syntax for searching
+your inbox.
+
+```py
+import imaplib
+import getpass
+
+M = imaplib.IMP4_SSL('imap.gmail.com')
+
+email = getpass.getpass('Email: ')
+
+# app password
+password = getpass.getpass('Password: ')
+
+M.login(email, password)
+M.list()
+
+M.select('inbox')
+
+type, data = M.search(None, 'SUBJECT "Test Email"')
+email_id = data[0]
+
+result, email_data = M.fetch(email_id, '(RFC822)')
+print(email_data)
+
+raw_email = email_data[0][1]
+raw_email_string = raw_email.decode('utf-8')
+
+import email
+email_message = email.message_from_string(raw_email_string)
+
+for part in email_message.walk():
+    if part.get_content_type() == 'text/plain':
+        body = . part.get_payload(decord=True)
+        print(body)
 ```
