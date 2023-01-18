@@ -1276,7 +1276,7 @@ class NameOfClass():
         pint(self.param1)
 ```
 
-### Attributes and `class` keyword
+### Class Attributes
 
 Simple class
 
@@ -1302,4 +1302,47 @@ huskie = Dog(breed='Huskie')
 
 print(lab.breed)
 print(lab.huskie)
+```
+
+### Class Methods
+
+Methods are essentially functions defined inside the body of
+the class, and they're used to perform operations that sometimes
+ultilize the actual attributes of the object we created.
+
+```py
+class Dog():
+    species = 'mammal'
+
+    def __init__(self,breed,name):
+        # attributes
+        self.breed = breed
+        self.name = name
+
+    # operations/actions --> methods
+    def bark(self):
+        print("WOOF! My name is {}".format(self.name))
+
+lab = Dog(breed='Lab',name='Sam')
+
+print(lab.breed)
+print(lab.name)
+print(lab.species)
+```
+
+```py
+class Circle():
+
+    # Class object attribute
+    pi = 3.14
+
+    def __init__(self,radius):
+        self.radius = radius
+
+    # Method
+    def get_circumference(self):
+        return self.radius * self.pi * 2
+
+c = Circle(2)
+c.get_circumference()
 ```
