@@ -1786,3 +1786,58 @@ print(c)
 ```
 
 Run `pylint test.py`
+
+### Running tests with the UnitTest Library
+
+UnitTest allows you to write your own test program.
+And the goal is to send a specific set of data to your program,
+analyze the returned results, and then see if it actually gives
+you the expected result.
+
+Create 2 scripts:
+
+- `cap.py`
+- `test_cap.py`
+
+In `cap.py`
+
+```py
+# cap.py
+
+def cap_text(text):
+    return text.title()
+```
+
+In `test_cap.py`
+
+```py
+# test_cap.py
+
+import unittest
+import cap
+
+class TestCap(unittest.TestCase):
+
+    def test_one_word(self):
+        text = 'python'
+        result = cap.cap_text(text)
+        expected = 'Python'
+
+        self.assertEqual(result, expected)
+
+    def test_multiple_words(self):
+        text = 'hello world'
+        result = cap.cap_text(text)
+        expected = 'Hello World'
+
+        self.assertEqual(result, expected)
+
+if __name__ == '__main__':
+    unittest.main()
+```
+
+Run test
+
+```sh
+python test_cap.py
+```
