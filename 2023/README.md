@@ -4,9 +4,99 @@
 
 [Notebooks](https://github.com/Pierian-Data/Complete-Python-3-Bootcamp)
 
-## Introduction
+Table of contents
 
-### Why Python?
+- [The Complete Python Bootcamp From Zero to Hero in Python](#the-complete-python-bootcamp-from-zero-to-hero-in-python)
+  - [1. Introduction](#1-introduction)
+    - [1.1. Why Python?](#11-why-python)
+  - [2. Python Setup](#2-python-setup)
+    - [2.1. Installing Python](#21-installing-python)
+    - [2.2. Running Python code](#22-running-python-code)
+  - [3. Python Basics](#3-python-basics)
+    - [3.1. Data Types](#31-data-types)
+    - [3.2. Numbers](#32-numbers)
+    - [3.3. Variable assignments](#33-variable-assignments)
+    - [3.4. Introduction to Strings](#34-introduction-to-strings)
+    - [3.5. String properties and methods](#35-string-properties-and-methods)
+    - [3.6. String formatting for printing](#36-string-formatting-for-printing)
+  - [4. Lists](#4-lists)
+    - [4.1. Dictionaries](#41-dictionaries)
+    - [4.2. Tuples](#42-tuples)
+    - [4.3. Sets](#43-sets)
+    - [4.4. Booleans](#44-booleans)
+    - [4.5. I/O with basic files in Python](#45-io-with-basic-files-in-python)
+    - [4.6. Comparison Operators](#46-comparison-operators)
+  - [5. Python Statements](#5-python-statements)
+    - [5.1. If-else](#51-if-else)
+    - [5.2. For loop](#52-for-loop)
+    - [5.3. While loop](#53-while-loop)
+    - [5.4. Useful operators](#54-useful-operators)
+    - [5.5. List Comprehensions](#55-list-comprehensions)
+  - [6. Methods and Functions](#6-methods-and-functions)
+    - [6.1. Methods](#61-methods)
+    - [6.2. Functions](#62-functions)
+      - [6.2.1. `def` keyword](#621-def-keyword)
+      - [6.2.2. Basic function](#622-basic-function)
+      - [6.2.3. Functions with logic](#623-functions-with-logic)
+      - [6.2.4. Tuple unpacking with Python functions](#624-tuple-unpacking-with-python-functions)
+      - [6.2.5. Interaction between functions](#625-interaction-between-functions)
+    - [6.3. `*args` and `**kwargs` in Python](#63-args-and-kwargs-in-python)
+    - [6.4. Lambda expressions: Map and Filter](#64-lambda-expressions-map-and-filter)
+    - [6.5. Nested statements and Scope](#65-nested-statements-and-scope)
+  - [7. Milestone Project - 1](#7-milestone-project---1)
+    - [7.1. Introduction to Warm Up Project Exercises](#71-introduction-to-warm-up-project-exercises)
+    - [7.2. Displaying Information](#72-displaying-information)
+    - [7.3. Accepting user input](#73-accepting-user-input)
+    - [7.4. Validating user input](#74-validating-user-input)
+    - [7.5. Overview](#75-overview)
+    - [7.6. Solutions](#76-solutions)
+  - [8. Object Oriented Programming](#8-object-oriented-programming)
+    - [8.1. Introduction to OOP](#81-introduction-to-oop)
+    - [8.2. Class Attributes](#82-class-attributes)
+    - [8.3. Class Methods](#83-class-methods)
+    - [8.4. Inheritance and Polymorphism](#84-inheritance-and-polymorphism)
+    - [8.5. Special (Magic/Dunder) methods](#85-special-magicdunder-methods)
+  - [9. Modules and Packages](#9-modules-and-packages)
+    - [9.1. Pip Install and Pypi](#91-pip-install-and-pypi)
+    - [9.2. Modules \& Packages](#92-modules--packages)
+      - [9.2.1. Create a module](#921-create-a-module)
+      - [9.2.2. Create a package](#922-create-a-package)
+    - [9.3. `__name__` and `__main__`](#93-__name__-and-__main__)
+  - [10. Errors and Exceptions Handling](#10-errors-and-exceptions-handling)
+    - [10.1. Intro](#101-intro)
+    - [10.2. Pylint overview](#102-pylint-overview)
+    - [10.3. Running tests with the UnitTest Library](#103-running-tests-with-the-unittest-library)
+  - [11. Decorators](#11-decorators)
+  - [12. Generators](#12-generators)
+  - [13. Advanced Python Modules](#13-advanced-python-modules)
+    - [13.1. Section intro](#131-section-intro)
+    - [13.2. Collections module](#132-collections-module)
+    - [13.3. Opening and Reading files and Folder](#133-opening-and-reading-files-and-folder)
+    - [13.4. Datetime module](#134-datetime-module)
+    - [13.5. Math and Random modules](#135-math-and-random-modules)
+    - [13.6. Python debugger](#136-python-debugger)
+    - [13.7. Python Regex](#137-python-regex)
+    - [13.8. Timing your Python code](#138-timing-your-python-code)
+    - [13.9. Ziping and Unziping files](#139-ziping-and-unziping-files)
+  - [14. Web Scraping with Python](#14-web-scraping-with-python)
+    - [14.1. Introduction to web scraping](#141-introduction-to-web-scraping)
+    - [14.2. Setting up](#142-setting-up)
+    - [14.3. Grabbing a Title](#143-grabbing-a-title)
+    - [14.4. Grabbing all elements of a class](#144-grabbing-all-elements-of-a-class)
+    - [14.5. Grabbing an Image](#145-grabbing-an-image)
+    - [14.6. Book examples](#146-book-examples)
+  - [15. Working with Images in Python](#15-working-with-images-in-python)
+  - [16. Working with PDF and CSV Files](#16-working-with-pdf-and-csv-files)
+    - [16.1. Working with CSV files in Python](#161-working-with-csv-files-in-python)
+    - [16.2. Working with PDF file in Python](#162-working-with-pdf-file-in-python)
+  - [17. Emails](#17-emails)
+    - [17.1. Sending Emails with Python](#171-sending-emails-with-python)
+    - [17.2. Receiving emails](#172-receiving-emails)
+
+
+## 1. Introduction
+
+### 1.1. Why Python?
 
 Brief History of Python
 
@@ -58,9 +148,9 @@ Create websites
   data
 - Create interactive dashboards for users
 
-## Python Setup
+## 2. Python Setup
 
-### Installing Python
+### 2.1. Installing Python
 
 - There are many ways to run Python!
 - Later on we'll explore the difference
@@ -78,7 +168,7 @@ Install with Anaconda
 - Anaconda can also easily be installed on
   to any major OS, Windows, MacOS or Linux
 
-### Running Python code
+### 2.2. Running Python code
 
 There are several ways to run Python code.
 
@@ -113,9 +203,9 @@ Notebook Environments
   visualizations, videos, and more
 - Special file formats that are not `.py`
 
-## Python Basics
+## 3. Python Basics
 
-### Data Types
+### 3.1. Data Types
 
 Some types:
 
@@ -128,7 +218,7 @@ Some types:
 - `set`: Sets, unordered collection of unique objects
 - `bool`: Booleans,logical value
 
-### Numbers
+### 3.2. Numbers
 
 There are two main number types:
 
@@ -144,7 +234,7 @@ Operators:
 - `%`: mod
 - `**`: power
 
-### Variable assignments
+### 3.3. Variable assignments
 
 Rules for variable names
 
@@ -175,7 +265,7 @@ Cons of Dynamic typing:
 - Many result in bugs for unexpected data types
 - You need to be aware of `type()`
 
-### Introduction to Strings
+### 3.4. Introduction to Strings
 
 Strings are sequences of characters, using
 the syntax of either single quotes or
@@ -226,7 +316,7 @@ print(my_str[::2]) # 'Hlo ol'
 print(my_str[::-1]) # 'dlroW olleH'
 ```
 
-### String properties and methods
+### 3.5. String properties and methods
 
 Immutability: you cannot mutate or cannot change
 
@@ -254,7 +344,7 @@ String methods
 - `str.lower()`
 - `str.split()`
 
-### String formatting for printing
+### 3.6. String formatting for printing
 
 There are multiple ways to format strings
 for printing variables in them. This is
@@ -291,7 +381,7 @@ print('Hello his name is {}'.format(name))
 print(f'Hello his name is {name}')
 ```
 
-## Lists
+## 4. Lists
 
 - Lists are `ordered sequences` that
   can hold a variety of object types
@@ -327,7 +417,7 @@ a.pop() # 3
 a.pop(0) # 1
 ```
 
-### Dictionaries
+### 4.1. Dictionaries
 
 - Dictionaries are `unordered` mappings
   for storing objects. Previously we saw
@@ -370,7 +460,7 @@ prices_lookup.values()
 prices_lookup.items()
 ```
 
-### Tuples
+### 4.2. Tuples
 
 - Tuples are very similar to lists. However they have one key difference - `immutability`
 - Once an element is inside a tuple, it can not be reassigned
@@ -383,7 +473,7 @@ Using tuples when
 
 - Provides a very convenient source of what's known as `data integrity`
 
-### Sets
+### 4.3. Sets
 
 - Sets are unordered collections of `unique`
   elements
@@ -408,7 +498,7 @@ my_list = [1,2,3,1,1,1]
 unique = set(my_list) # {1,2,3}
 ```
 
-### Booleans
+### 4.4. Booleans
 
 - Booleans are operators that allow you
   to convey `True` or `False` statements
@@ -424,7 +514,7 @@ type(true) # bool
 type(false) # bool
 ```
 
-### I/O with basic files in Python
+### 4.5. I/O with basic files in Python
 
 Using jupyter notebook to quickly write a file
 
@@ -507,7 +597,7 @@ File permissions
 - `r+`: reading and writing
 - `w+`: writing and reading (overwrites existing files or creates a new file)
 
-### Comparison Operators
+### 4.6. Comparison Operators
 
 Operators
 
@@ -524,9 +614,9 @@ Logical operators
 - `or`
 - `not`
 
-## Python Statements
+## 5. Python Statements
 
-### If-else
+### 5.1. If-else
 
 - Let's begin to learn about control flow
 - We often only want certain code to execute
@@ -553,7 +643,7 @@ else
     pass
 ```
 
-### For loop
+### 5.2. For loop
 
 - Many objects in `Python` are `iterable`,
   meaning we can iterate over every element in
@@ -592,7 +682,7 @@ for k,v in d.items():
     print(k,v)
 ```
 
-### While loop
+### 5.3. While loop
 
 While loops will continue to execute a block
 of code while some condition remains `True`
@@ -616,7 +706,7 @@ We can use some statements inside the loop
   enclosing loop
 - `pass` does nothing at all
 
-### Useful operators
+### 5.4. Useful operators
 
 - `range` is a generator. It is just a special type of function that will generate informatioin instead of saving it all to memory. This a more efficient way of generating these numbers instead of having a giant sorted memory.
 
@@ -663,7 +753,7 @@ l = list(zip(mylist1, mylist2))
 'k' in { 'k': 1 } # True
 ```
 
-### List Comprehensions
+### 5.5. List Comprehensions
 
 List comprehensions are a unique way of
 quickly creating a list with `Python`
@@ -695,9 +785,9 @@ my_list = [x**2 for x in range(0,11)]
 my_list = [x for x in range(0,11) if x%2==0]
 ```
 
-## Methods and Functions
+## 6. Methods and Functions
 
-### Methods
+### 6.1. Methods
 
 Built-in objects in Python have a variety
 of methods you can use!
@@ -717,7 +807,7 @@ help(l.insert)
 
 [Python Docs](https://docs.python.org/3/)
 
-### Functions
+### 6.2. Functions
 
 Crreating clean repeatable code is a key
 part of becoming an effective programmer
@@ -733,7 +823,7 @@ in your capabilities as a Python programmer.
 This means that the problems you are
 able to solve can also be a lot harder!
 
-#### `def` keyword
+#### 6.2.1. `def` keyword
 
 Creating a function requires a very
 specific syntax, including the `def` keyword,
@@ -770,7 +860,7 @@ def add(n1, n2):
     return n1 + n2
 ```
 
-#### Basic function
+#### 6.2.2. Basic function
 
 Provide default args
 
@@ -782,7 +872,7 @@ greet('Hieu')
 greet()
 ```
 
-#### Functions with logic
+#### 6.2.3. Functions with logic
 
 ```py
 def even_check(number):
@@ -797,7 +887,7 @@ def check_even_list(num_list):
     return even_numbers
 ```
 
-#### Tuple unpacking with Python functions
+#### 6.2.4. Tuple unpacking with Python functions
 
 Re all that we've previously seen, we can loop
 through a list of tuples and unpack the values within them.
@@ -836,7 +926,7 @@ def employee_check(work_hours):
 employee,hour = employee_check(work_hours)
 ```
 
-#### Interaction between functions
+#### 6.2.5. Interaction between functions
 
 ```py
 from random import shuffle
@@ -855,7 +945,7 @@ def player_guess():
     return int(guess)
 ```
 
-### `*args` and `**kwargs` in Python
+### 6.3. `*args` and `**kwargs` in Python
 
 - `args`: Arguments
 - `kwargs`: Keyword arguments
@@ -912,7 +1002,7 @@ of arguments that you don't need to define
 beforehand. And this is going to be especially
 useful when you begin to use outside library.
 
-### Lambda expressions: Map and Filter
+### 6.4. Lambda expressions: Map and Filter
 
 ```py
 def square(n):
@@ -966,7 +1056,7 @@ evens = list(filter(lambda n:n%2==0, numbers))
 squares = list(map(lambda n:n**2, numbers))
 ```
 
-### Nested statements and Scope
+### 6.5. Nested statements and Scope
 
 It's important to understand how Python deals
 with the variable names you assigned. When
@@ -1040,9 +1130,9 @@ def func(x):
 x = func(x)
 ```
 
-## Milestone Project - 1
+## 7. Milestone Project - 1
 
-### Introduction to Warm Up Project Exercises
+### 7.1. Introduction to Warm Up Project Exercises
 
 Most programs that are interactive work
 on this very simple idea
@@ -1052,7 +1142,7 @@ on this very simple idea
 - Update variables in the program
 - Display updated visual
 
-### Displaying Information
+### 7.2. Displaying Information
 
 ```py
 def display(row1,row2,row3):
@@ -1067,13 +1157,13 @@ row3 = [' ', ' ', ' ']
 display(row1,row2,row3)
 ```
 
-### Accepting user input
+### 7.3. Accepting user input
 
 ```py
 input('Please enter a value')
 ```
 
-### Validating user input
+### 7.4. Validating user input
 
 ```py
 def user_choice():
@@ -1093,7 +1183,7 @@ def user_choice():
     return int(choice)
 ```
 
-### Overview
+### 7.5. Overview
 
 Tic Tac Toe game for 2 human players.
 
@@ -1117,7 +1207,7 @@ board = [
 ]
 ```
 
-### Solutions
+### 7.6. Solutions
 
 ```py
 from IPython.display import clear_output
@@ -1231,9 +1321,9 @@ def main():
 main()
 ```
 
-## Object Oriented Programming
+## 8. Object Oriented Programming
 
-### Introduction to OOP
+### 8.1. Introduction to OOP
 
 OOP allows programmers to create their own
 objects that have methods and attributes .
@@ -1276,7 +1366,7 @@ class NameOfClass():
         pint(self.param1)
 ```
 
-### Class Attributes
+### 8.2. Class Attributes
 
 Simple class
 
@@ -1304,7 +1394,7 @@ print(lab.breed)
 print(lab.huskie)
 ```
 
-### Class Methods
+### 8.3. Class Methods
 
 Methods are essentially functions defined inside the body of
 the class, and they're used to perform operations that sometimes
@@ -1347,7 +1437,7 @@ c = Circle(2)
 c.get_circumference()
 ```
 
-### Inheritance and Polymorphism
+### 8.4. Inheritance and Polymorphism
 
 Inhertitance is basically a way to form new classes using
 classes that have already defined. The benefits of inheritance
@@ -1461,7 +1551,7 @@ print(fido.speak())
 print(isis.speak())
 ```
 
-### Special (Magic/Dunder) methods
+### 8.5. Special (Magic/Dunder) methods
 
 Special methods allow us to use some built-in operations
 in Python, such as the `length` function or the `print`
@@ -1509,9 +1599,9 @@ print(len(b))
 del b
 ```
 
-## Modules and Packages
+## 9. Modules and Packages
 
-### Pip Install and Pypi
+### 9.1. Pip Install and Pypi
 
 PyPI is a repository for open-source third-party Python packages
 
@@ -1533,7 +1623,7 @@ pip install requests
 pip install colorama
 ```
 
-### Modules & Packages
+### 9.2. Modules & Packages
 
 Now that we understand how to install external packages,
 let's explore how to create our own modules and packages.
@@ -1543,7 +1633,7 @@ script.
 
 `Packages` are a collection of modules.
 
-#### Create a module
+#### 9.2.1. Create a module
 
 Module is just a `.py` script being called in from another file.
 The idea is that if you have a really large script, you're not
@@ -1569,7 +1659,7 @@ from module import my_func
 my_func()
 ```
 
-#### Create a package
+#### 9.2.2. Create a package
 
 - Create new folder called `MyMainPackage`
 - Create new folder called `MyMainPackage/SubPackage`
@@ -1626,7 +1716,7 @@ Directories:
     - `__init__.py`
     - `sub_script.py`
 
-### `__name__` and `__main__`
+### 9.3. `__name__` and `__main__`
 
 An often confusing part of Python is a
 mysterious line of code: `if __name__ == "__main__":`
@@ -1706,9 +1796,9 @@ if __name__ == "__main__":
     func1()
 ```
 
-## Errors and Exceptions Handling
+## 10. Errors and Exceptions Handling
 
-### Intro
+### 10.1. Intro
 
 - Errors are bound to happen in your code!
 - Especailly when someone else ends up using it in an unexpected
@@ -1752,7 +1842,7 @@ def ask_for_input():
             print('I will always run at the end!')
 ```
 
-### Pylint overview
+### 10.2. Pylint overview
 
 As you begin to expand to larger multi-file projects. It becomes
 important to have tests in place.
@@ -1787,7 +1877,7 @@ print(c)
 
 Run `pylint test.py`
 
-### Running tests with the UnitTest Library
+### 10.3. Running tests with the UnitTest Library
 
 UnitTest allows you to write your own test program.
 And the goal is to send a specific set of data to your program,
@@ -1842,7 +1932,7 @@ Run test
 python test_cap.py
 ```
 
-## Decorators
+## 11. Decorators
 
 Decorators allow you to `decorate` a function.
 
@@ -2022,7 +2112,7 @@ So they're really commonly used in web frameworks such as
 Django or Flask, which is why it's important to understand
 behind the scenes what the decorator is actually doing.
 
-## Generators
+## 12. Generators
 
 We've learned how to create functions with `def` and the `return`
 statement.
@@ -2152,9 +2242,9 @@ next(s_iter) # l
 next(s_iter) # o
 ```
 
-## Advanced Python Modules
+## 13. Advanced Python Modules
 
-### Section intro
+### 13.1. Section intro
 
 Python has several built-in modules that we haven't fully explorered
 yet!
@@ -2169,7 +2259,7 @@ Modules covered in this section:
 - Regular expressions
 - Unzipping and zipping modules
 
-### Collections module
+### 13.2. Collections module
 
 - `Counter`
 
@@ -2195,7 +2285,7 @@ c.most_common()
 - `defaultdict`
 - `namedtuple`
 
-### Opening and Reading files and Folder
+### 13.3. Opening and Reading files and Folder
 
 `shutil` and `os` modules
 
@@ -2226,7 +2316,7 @@ import shutil
 shutil.move('test.txt', '/root/dest/')
 ```
 
-### Datetime module
+### 13.4. Datetime module
 
 ```py
 import datetime
@@ -2247,7 +2337,7 @@ Date
 from datetime import date
 ```
 
-### Math and Random modules
+### 13.5. Math and Random modules
 
 ```py
 import math
@@ -2261,7 +2351,7 @@ random.seed(101)
 random.randint(0,100)
 ```
 
-### Python debugger
+### 13.6. Python debugger
 
 When trying to figure out what errors there are in your code, you've
 probably used `print()` to try to track down the error. Fortunately,
@@ -2282,7 +2372,7 @@ result = a + b
 
 To quit, type `q`
 
-### Python Regex
+### 13.7. Python Regex
 
 We already know we can search for substrings within a larger
 string with the `in` operator
@@ -2408,7 +2498,7 @@ Addtional regex syntax
 - start with: `^`
 - end with: `$`
 
-### Timing your Python code
+### 13.8. Timing your Python code
 
 As you learn more Python, you will
 discover multiple solutions for a single task
@@ -2468,7 +2558,7 @@ def func_one(n):
 timeit.timeit(stmt, setup, number=100000)
 ```
 
-### Ziping and Unziping files
+### 13.9. Ziping and Unziping files
 
 A zip file is just a compresed file, meaning you can take a
 bunch of files and compress them to save space inside of a zip
@@ -2486,9 +2576,9 @@ zip_obj = zipfile.ZipFile('comp_file.zip', 'r')
 zip_obj.extractall('extracted_content')
 ```
 
-## Web Scraping with Python
+## 14. Web Scraping with Python
 
-### Introduction to web scraping
+### 14.1. Introduction to web scraping
 
 Web scraping is a general term for techniques involving
 automating the gathering of data from a website.
@@ -2549,12 +2639,12 @@ Directly at your command line use
 - `pip install lxml`
 - `pip install bs4`
 
-### Setting up
+### 14.2. Setting up
 
 - Install the necessary libraries
 - Explore how to inspect elements and view source of a webpage
 
-### Grabbing a Title
+### 14.3. Grabbing a Title
 
 ```py
 import requests
@@ -2573,7 +2663,7 @@ if __name__ == '__main__':
     print(title)
 ```
 
-### Grabbing all elements of a class
+### 14.4. Grabbing all elements of a class
 
 We previously mentioned a big part
 of web scraping with the BS4 library
@@ -2598,7 +2688,7 @@ if __name__ == '__main__':
         print(text)
 ```
 
-### Grabbing an Image
+### 14.5. Grabbing an Image
 
 BeautifulSoup can scan a page, locate the `<img>` tags
 and grab these URLs.
@@ -2638,7 +2728,7 @@ if __name__ == '__main__':
     grab_image()
 ```
 
-### Book examples
+### 14.6. Book examples
 
 Working with multiple pages and items
 
@@ -2686,7 +2776,7 @@ if __name__ == '__main__':
         print('Page {}: #{} - {}'.format(page, index, title))
 ```
 
-## Working with Images in Python
+## 15. Working with Images in Python
 
 In this section we will focus on learning how to
 work with images with the `Pillow` library. We'll
@@ -2736,12 +2826,12 @@ image.rotate(90)
 image.save('test.jpg')
 ```
 
-## Working with PDF and CSV Files
+## 16. Working with PDF and CSV Files
 
 Python has the ability to work with PDF files and
 spreadsheet files
 
-### Working with CSV files in Python
+### 16.1. Working with CSV files in Python
 
 CSV stands for comma seperated variables and is a very
 common output for spreadsheet programs
@@ -2827,7 +2917,7 @@ for index,email in enumerate(all_emails):
 csv_writer.close()
 ```
 
-### Working with PDF file in Python
+### 16.2. Working with PDF file in Python
 
 PDF stands for Portable Document Format and was
 developed by Adobe in the 1990s.
@@ -2886,9 +2976,9 @@ pdf_output = open('output.pdf', 'wb')
 pdf_writer.write(pdf_output)
 ```
 
-## Emails
+## 17. Emails
 
-### Sending Emails with Python
+### 17.1. Sending Emails with Python
 
 To send emails with Python, we need to manually go through
 the steps of connecting to an email server,
@@ -2950,7 +3040,7 @@ smtp_object.sendmail(from_address, to_address, msg)
 smtp_object.quit()
 ```
 
-### Receiving emails
+### 17.2. Receiving emails
 
 To view received emails with Python, we can use the builtin
 `imaplib` and email libraries in Python
