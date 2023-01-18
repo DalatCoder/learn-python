@@ -1532,3 +1532,96 @@ directly from the PyPI repository.
 pip install requests
 pip install colorama
 ```
+
+### Modules & Packages
+
+Now that we understand how to install external packages,
+let's explore how to create our own modules and packages.
+
+`Modules` are just `.py` scripts that you call in another `.py`
+script.
+
+`Packages` are a collection of modules.
+
+#### Create a module
+
+Module is just a `.py` script being called in from another file.
+The idea is that if you have a really large script, you're not
+going to put everything in one giant `.py` file. Instead, it'll be
+nice to split up between multiple `.py` files, which means you
+split it up between different `modules`.
+
+And then later we'll see how we can aggregate a bunch of modules
+to create a package.
+
+```py
+# module.py
+
+def my_func():
+    print('Hey I am in module.py')
+```
+
+```py
+# main.py
+
+from module import my_func
+
+my_func()
+```
+
+#### Create a package
+
+- Create new folder called `MyMainPackage`
+- Create new folder called `MyMainPackage/SubPackage`
+
+Now, since these are just directories or folders, we need to
+let Python be able to understand that we want to treat these
+directories not just as a normal directory but as an actual package.
+
+- Create new file called `MyMainPackage/__init__.py`
+- Create new file called `MyMainPackage/SubPackage/__init__.py`
+
+Now, you don't actually need to write anything in this file.
+It just needs to be there so that when Python goes searching
+through these packages, it understands that it's not just a normal
+directory. It's an actual `package`.
+
+- Create new file `MyMainPackage/main_script.py`
+- Create new file `MyMainPackage/SubPackage/sub_script.py`
+
+```py
+# sub_script.py
+
+def sub_report():
+    print('Hey I am a function inside sub_script.py')
+```
+
+```py
+# main_script.py
+
+def main_report():
+    print('Hey I am in main_script.py')
+```
+
+Import from `package`
+
+```py
+# main.py
+
+from MyMainPackage import main_package
+from MyMainPackage.SubPackage import sub_package
+
+main_package.main_report()
+sub_package.sub_report()
+```
+
+Directories:
+
+- `main.py`
+- `module.py`
+- `MyMainPackage`
+  - `__init__.py`
+  - `main_script.py`
+  - `SubPackage`
+    - `__init__.py`
+    - `sub_script.py`
