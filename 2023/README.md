@@ -854,3 +854,60 @@ def player_guess():
 
     return int(guess)
 ```
+
+### `*args` and `**kwargs` in Python
+
+- `args`: Arguments
+- `kwargs`: Keyword arguments
+
+```py
+def add(*args):
+    print(type(args)) # tuple
+
+    for item in args:
+        pass
+
+    return sum(args)
+
+add(1,2)
+add(1,2,3)
+add(1,2,3,4)
+```
+
+```py
+def myfunc(**kwargs):
+    print(type(kwargs)) # dictionary
+
+    if 'fruit' in kwargs:
+        print('My fruit of choice is ' + kwargs['fruit'])
+    else:
+        print('I did not find any fruit here')
+
+myfunc(fruit='apple', veggie='lettuce')
+```
+
+The convention is to use `args` and `kwargs`.
+However, we can choose whatever names we like
+
+```py
+def add(*numbers):
+    pass
+
+def func(**dict):
+    pass
+```
+
+Used in combination
+
+```py
+def func(*args, **kwargs):
+    print(args)
+    print(kwargs)
+
+func(10,20,30,fruit='orange',food='egg')
+```
+
+This allows you to take in an arbitrary number
+of arguments that you don't need to define
+beforehand. And this is going to be especially
+useful when you begin to use outside library.
