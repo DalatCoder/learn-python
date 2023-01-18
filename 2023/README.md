@@ -1460,3 +1460,51 @@ isis = Cat('Isis')
 print(fido.speak())
 print(isis.speak())
 ```
+
+### Special (Magic/Dunder) methods
+
+Special methods allow us to use some built-in operations
+in Python, such as the `length` function or the `print`
+function with our own user created objects.
+
+```py
+l = [1,2,3]
+len(l)
+print(l)
+
+class Sample():
+    pass
+
+s = Sample()
+len(s)
+print(s)
+```
+
+Special methods, some people also call them magic methods or
+dunder methods because they use `__`
+
+```py
+class Book():
+    def __init__(self, title, author, pages):
+        self.title = title
+        self.author = author
+        self.pages = pages
+
+    def __str__(self):
+        return f"{self.title} by {self.author}"
+
+    def __len__(self):
+        return self.pages
+
+    def __del__(self):
+        print('A book object has been deleted')
+
+b = Book('Python rocks', 'Jose', 200)
+
+print(b)
+string_representation = str(b)
+print(len(b))
+
+# delete variable
+del b
+```
