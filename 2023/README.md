@@ -2735,3 +2735,94 @@ image.rotate(90)
 
 image.save('test.jpg')
 ```
+
+## Working with PDF and CSV Files
+
+Python has the ability to work with PDF files and
+spreadsheet files
+
+### Working with CSV files in Python
+
+CSV stands for comma seperated variables and is a very
+common output for spreadsheet programs
+
+Example:
+
+- Name, Hours, Rate
+- David, 20, 15
+- Claire, 40, 20
+
+Note, that while its possible to export excel files
+and Google Spreadsheets to `.csv` files. It only
+exports the information.
+
+Things like formulas, images, and macros can not be
+within a `.csv` file.
+
+Simply put a `.csv` file only contains the raw data from
+the spreadsheet.
+
+We will work with the built-in `csv` module for Python,
+which will allow us to grab columns, rows and values from
+a `.csv` file as well as write to a `.csv` file. Keep
+in mind, this is a very popular space for outside libraries,
+which you may want to explore.
+
+Other libraries to consider:
+
+- Pandas:
+  - Full data analysis library, can work with almost any
+    tabular data type
+  - Runs visualizations and analysis
+  - One of my personal favorites, we teach it in various
+    data science courses
+
+- Openpyxl:
+  - Designed specifically for Excel files
+
+- Google Sheets Python API:
+  - Direct Python interface for working with Goolge Spreadsheets
+  - Allows you to directly make changes to the spreadsheets hosted online
+  - More complex syntax, but available in many programming languages
+
+```py
+import csv
+
+# Open the file
+data = open('example.csv', encoding='utf-8')
+
+# csv.reader
+csv_data = csv.reader(data)
+
+# reformat it into a python object list of lists
+data_lines = list(csv_data)
+
+headers = data_lines[0]
+first_data_row = data_lines[1]
+
+# first 5 lines
+for line in data_lines[:5]:
+    print(line)
+
+# get all emails
+all_emails = []
+
+for line in data_lines[1:]:
+    all_emails.append(line[3])
+
+# get all fullname
+all_fullnames = []
+
+for line in data_lines[1:]:
+    all_fullnames.append(line[1] + ' ' + line[2])
+
+# write file
+file_to_output = open('to_save_file.csv', mode='w', newline='')
+csv_writer = csv.writer(file_to_output, delimiter=',')
+csv_writer.writerow(['names','emails',])
+
+for index,email in enumerate(all_emails):
+    csv_writer.writerow([all_fullnames[index], email])
+
+csv_writer.close()
+```
