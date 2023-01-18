@@ -911,3 +911,57 @@ This allows you to take in an arbitrary number
 of arguments that you don't need to define
 beforehand. And this is going to be especially
 useful when you begin to use outside library.
+
+### Lambda expressions: Map and Filter
+
+```py
+def square(n):
+    return n**2
+
+numbers = [1,2,3,4,5]
+square_numbers = []
+
+for n in numbers:
+    square_numbers.append(square(n))
+```
+
+Or using `map`
+
+```py
+def square(n):
+    return n**2
+
+numbers = [1,2,3,4,5]
+square_numbers = list(map(square, numbers))
+```
+
+`filter` function
+
+```python
+def check_even(num):
+    return num % 2 == 0;
+
+numbers = [1,2,3,4,5]
+even_numbers = list(filter(check_even, number))
+```
+
+Lambda expressions (anonymous function)
+
+```py
+def square(n):
+    result = num**2
+    return result
+
+square(3)
+
+square_lambda = lambda num: num**2
+square_lambda(3)
+```
+
+Using `lambda` with `map` and `filter`
+
+```py
+numbers = [1,2,3,4,5]
+evens = list(filter(lambda n:n%2==0, numbers))
+squares = list(map(lambda n:n**2, numbers))
+```
