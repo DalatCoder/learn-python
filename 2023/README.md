@@ -1705,3 +1705,49 @@ if __name__ == "__main__":
     func()
     func1()
 ```
+
+## Errors and Exceptions Handling
+
+### Intro
+
+- Errors are bound to happen in your code!
+- Especailly when someone else ends up using it in an unexpected
+  way
+- We can use error handling to attempt to plan for possible errors
+
+Error handling
+
+- `try`: this is the block of code to be attempted (may lead to an error)
+- `except`: block of code will execute in case there is an error in `try` block
+- `finally`: a final block of code to be executed, regardless of an error
+
+```py
+try:
+    f = open('t.txt', 'r')
+    f.write('write a test line')
+except TypeError:
+    print('There was a type error!')
+except OSError:
+    print('Hey you have an OS error')
+except:
+    print('All other exceptions')
+finally:
+    print('I always run')
+    f.close()
+```
+
+```py
+def ask_for_input():
+    while True:
+        try:
+            result = int(input('Please provide number: '))
+        except:
+            print('Whoops! That is not a number')
+            continue
+        else:
+            print('Yes thank you')
+            break
+        finally:
+            print('End of try/except/finally')
+            print('I will always run at the end!')
+```
