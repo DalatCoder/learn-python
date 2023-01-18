@@ -2548,3 +2548,8 @@ Directly at your command line use
 - `pip install requests`
 - `pip install lxml`
 - `pip install bs4`
+
+### Setting up
+
+- Install the necessary libraries
+- Explore how to inspect elements and view source of a webpage
