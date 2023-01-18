@@ -2885,3 +2885,65 @@ pdf_writer.addPage(page_one)
 pdf_output = open('output.pdf', 'wb')
 pdf_writer.write(pdf_output)
 ```
+
+## Emails
+
+### Sending Emails with Python
+
+To send emails with Python, we need to manually go through
+the steps of connecting to an email server,
+confirming connectioin, setting a protocol, logging on,
+and sending the message.
+
+Fortunately, the built-in `smtplib` library in Python
+makes these steps simple function calls.
+
+Each major email provider has their own `SMTP` (Simple Mail
+Transer Protocol) Server
+
+- `Gmail (will need App Password)` -> `smtp.gmail.com`
+- `Yahoo Mail` -> `smtp.mail.yahoo.com`
+- `Outlook.com/Hotmail.com`: `smtp-mail.outlook.com`
+
+At it's essentially a domain name that you connect to
+when you're trying to access your email programmatically.
+
+We will go ver this process with a Gmail account. For
+Gmail users, you will need to generate an app password
+instead of your normal password.
+
+This let's Gmail know that the Python script attempting
+to access your account is authorized by you.
+
+```py
+import smtplib
+import getpass
+
+gmail_port = 587
+smtp_object = smtplib.SMTP('smtp.gmail.com', gmail_port)
+
+# connect to the server
+smtp_object.ehlo() 
+
+# port 587 using tls encryption
+smtp_object.starttls()
+
+email = input('Enter email: ')
+password = getpass.getpass('Enter password: ')
+
+smtp_object.login(email, password)
+
+from_address = email
+to_address = 'dest@gmail.com'
+
+subject = input('Enter the subject: ')
+message = input('Enter the body message: ')
+
+# format string mesage to send
+msg = 'Subject: ' + subject + '\n' + message
+
+smtp_object.sendmail(from_address, to_address, msg)
+
+# close session
+smtp_object.quit()
+```
