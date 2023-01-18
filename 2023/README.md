@@ -1039,3 +1039,56 @@ def func(x):
 
 x = func(x)
 ```
+
+## Milestone Project - 1
+
+### Introduction to Warm Up Project Exercises
+
+Most programs that are interactive work
+on this very simple idea
+
+- Display something visual to the user
+- Let the user update through an interaction
+- Update variables in the program
+- Display updated visual
+
+### Displaying Information
+
+```py
+def display(row1,row2,row3):
+    print(row1)
+    print(row2)
+    print(row3)
+
+row1 = [' ', ' ', ' ']
+row2 = [' ', 'X', ' ']
+row3 = [' ', ' ', ' ']
+
+display(row1,row2,row3)
+```
+
+### Accepting user input
+
+```py
+input('Please enter a value')
+```
+
+### Validating user input
+
+```py
+def user_choice():
+    choice = ''
+    acceptable_range = range(0,10)
+    within_range = False
+
+    while not choice.isdigit() or not within_range:
+        choice = input('Please enter a number (0-10): ')
+
+        if not choice.isdigit():
+            print('Sorry that is not a digit!')
+
+        if int(choice) in acceptable_range:
+            within_range = True
+
+    return int(choice)
+```
