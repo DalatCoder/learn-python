@@ -1625,3 +1625,83 @@ Directories:
   - `SubPackage`
     - `__init__.py`
     - `sub_script.py`
+
+### `__name__` and `__main__`
+
+An often confusing part of Python is a
+mysterious line of code: `if __name__ == "__main__":`
+
+Sometimes when you are importing from a module,
+you would like to know wheter a module function is being
+used as an import, or if you are using the original `.py` file
+of that module.
+
+Create a file called `one.py`
+
+When we run `python one.py`, all the code defined at indentation
+level `0` will be executed.
+And there is no `main` function for `entry point`
+
+There is `__name__` variable that is built-in to Python. So what
+happens is this variable `__name__` gets assigned a string depending
+on how you're running the actual script and if you run the script
+directly `python one.py`. It's going to assign this builtin variable
+called `__name__` to be equal to `__main__`. So Python does this
+in the background.
+
+So if `__name__` equal to `__main__`, you know that this particular
+`.py` file is being run directly.
+
+```py
+# one.py
+
+def func():
+    print('FUNC() IN ONE.PY')
+
+print('TOP LEVEL IN ONE.PY')
+
+if __name__ == "__main__":
+    print('ONE.PY is being run directly!')
+else:
+    print('ONE.PY has been imported!')
+```
+
+In `two.py`
+
+```py
+# two.py
+
+import one
+
+print('TOP LEVEL IN TWO.PY')
+
+one.func()
+
+if __name__ == '__main__':
+    print('TWO.PY is being run directly!')
+else:
+    prinit('TWO.PY has been imported!')
+```
+
+Open commandline and run:
+
+- `python one.py`
+- `python two.py`
+
+> So that builtin variable actualy allows you to see wheter something
+> is being imported or run directly.
+
+Conventions
+
+```py
+def func():
+    pass
+
+def func1():
+    pass
+
+if __name__ == "__main__":
+    # RUN THE SCRIPT!
+    func()
+    func1()
+```
