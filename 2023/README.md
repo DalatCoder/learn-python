@@ -2260,3 +2260,24 @@ import random
 random.seed(101)
 random.randint(0,100)
 ```
+
+### Python debugger
+
+When trying to figure out what errors there are in your code, you've
+probably used `print()` to try to track down the error. Fortunately,
+Python comes with a built-in debugger tool that allows you to
+interactively explore variables within mid-operation
+of your Python code.
+
+```py
+import pdb
+
+a = 1
+b = 2
+
+pdb.set_trace()
+
+result = a + b
+```
+
+To quit, type `q`
