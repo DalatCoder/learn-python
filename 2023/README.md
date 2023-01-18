@@ -2225,3 +2225,24 @@ import shutil
 
 shutil.move('test.txt', '/root/dest/')
 ```
+
+### Datetime module
+
+```py
+import datetime
+
+my_time = datetime.time()
+today = datetime.date.today()
+```
+
+Datetime
+
+```py
+from datetime import datetime
+```
+
+Date
+
+```py
+from datetime import date
+```
