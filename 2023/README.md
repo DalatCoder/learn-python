@@ -2246,3 +2246,17 @@ Date
 ```py
 from datetime import date
 ```
+
+### Math and Random modules
+
+```py
+import math
+
+help(math)
+```
+
+```py
+import random
+random.seed(101)
+random.randint(0,100)
+```
