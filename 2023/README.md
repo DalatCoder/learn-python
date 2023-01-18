@@ -2151,3 +2151,77 @@ next(s_iter) # l
 next(s_iter) # l
 next(s_iter) # o
 ```
+
+## Advanced Python Modules
+
+### Section intro
+
+Python has several built-in modules that we haven't fully explorered
+yet!
+
+Modules covered in this section:
+
+- Collections
+- OS Module and Datetime
+- Math and Random
+- Python debugger
+- Timeit
+- Regular expressions
+- Unzipping and zipping modules
+
+### Collections module
+
+- `Counter`
+
+```py
+from collections import Counter
+
+my_list = [1,1,1,2,2,3,3,3,4,5]
+Counter(my_list)
+Counter('helloworld')
+
+sentence = 'How many times does each word show up in this sentence with a word'
+Counter(sentence.lower().split())
+```
+
+Some common patterns with `Counter`
+
+```py
+my_list = [1,1,1,2,2,3,3,3,4,5]
+c = Counter(my_list)
+c.most_common()
+```
+
+- `defaultdict`
+- `namedtuple`
+
+### Opening and Reading files and Folder
+
+`shutil` and `os` modules
+
+We already know how to open an individual file with Python, but
+we still don't know how to do a few things:
+
+- What if we have to open very file in a directory?
+- What if we want to actually move files aroud on our computer?
+
+Python's `os` moudle and `shutil` (shell utilities) allow us to
+easily navigate files and directories on the computer and then
+perform actions on them, such as moving them or deleting them.
+
+Get current directory
+
+```py
+import os
+
+print(os.getcwd())
+print(os.listdir())
+```
+
+To move files
+
+```py
+import shutil
+
+shutil.move('test.txt', '/root/dest/')
+```
