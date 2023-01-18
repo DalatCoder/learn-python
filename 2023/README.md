@@ -1275,3 +1275,31 @@ class NameOfClass():
     def some_method(self):
         pint(self.param1)
 ```
+
+### Attributes and `class` keyword
+
+Simple class
+
+```py
+class Sample():
+    pass
+
+my_sample = Sample()
+type(my_sample) # __main__.Sample
+```
+
+Constructor (`__init()__`)
+
+```py
+class Dog():
+    def __init__(self, breed):
+
+        # attributes
+        self.breed = breed
+
+lab = Dog(breed='Lab')
+huskie = Dog(breed='Huskie')
+
+print(lab.breed)
+print(lab.huskie)
+```
