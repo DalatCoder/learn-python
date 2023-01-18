@@ -694,3 +694,163 @@ my_list = [x for x in range(0,11)]
 my_list = [x**2 for x in range(0,11)]
 my_list = [x for x in range(0,11) if x%2==0]
 ```
+
+## Methods and Functions
+
+### Methods
+
+Built-in objects in Python have a variety
+of methods you can use!
+
+Let's explore in a bit more detail how to find
+methods and how to get information about them.
+
+```py
+l = [1,2,3]
+
+l.append(4)
+l.pop()
+l.pop(0)
+
+help(l.insert)
+```
+
+[Python Docs](https://docs.python.org/3/)
+
+### Functions
+
+Crreating clean repeatable code is a key
+part of becoming an effective programmer
+
+Functions allow us to create blocks of
+code that can be easily executed many
+times, without needing to constantly
+rewrite the entire block of code
+
+Functions will be a huge leap forward
+in your capabilities as a Python programmer.
+
+This means that the problems you are
+able to solve can also be a lot harder!
+
+#### `def` keyword
+
+Creating a function requires a very
+specific syntax, including the `def` keyword,
+correct indentation, and proper structure.
+
+```py
+def name_of_function():
+    '''
+    Docstring explains function
+    '''
+    pass
+
+name_of_function()
+```
+
+Args
+
+```py
+def greet(name):
+    print('Hello ' + name)
+
+greet('Hieu')
+```
+
+Typically we use the `return` keyword to
+send back the result of the function, instead
+of just printing it out.
+
+`return` allows us to assign the output of
+the function to a new variable.
+
+```py
+def add(n1, n2):
+    return n1 + n2
+```
+
+#### Basic function
+
+Provide default args
+
+```py
+def greet(name = 'Stranger'):
+    print('Hello ' + name)
+
+greet('Hieu')
+greet()
+```
+
+#### Functions with logic
+
+```py
+def even_check(number):
+    return number % 2 == 0
+
+def check_even_list(num_list):
+    even_numbers = []
+    for n in num_list:
+        if n % 2 == 0:
+            even_numbers.append(n)
+
+    return even_numbers
+```
+
+#### Tuple unpacking with Python functions
+
+Re all that we've previously seen, we can loop
+through a list of tuples and unpack the values within them.
+
+```py
+stock_prices = [('APPL', 200), ('GOOG', 400), ('MSFT', 100)]
+
+for item in stock_prices:
+    print(item)
+
+# unpacking
+for ticker,price in stock_prices:
+    print(ticker)
+```
+
+Work with function
+
+```py
+work_hourse = [
+    ('Abby', 100),
+    ('Billy', 400),
+    ('Cassie', 800)
+]
+
+def employee_check(work_hours):
+    current_max = 0
+    employee_of_month = ''
+
+    for employee,hours in work_hours:
+        if hours > current_max:
+            current_max = hours
+            employee_of_month = employee
+
+    return (employee_of_month, current_max)
+
+employee,hour = employee_check(work_hours)
+```
+
+#### Interaction between functions
+
+```py
+from random import shuffle
+
+l = [1,2,3,4,5]
+shuffle(l)
+
+print(l)
+
+def player_guess():
+    guess = ''
+    
+    while guess not in ['0', '1', '2']:
+        guess = input('Pick a number: 0, 1 or 2')
+
+    return int(guess)
+```
