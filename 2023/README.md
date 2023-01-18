@@ -965,3 +965,77 @@ numbers = [1,2,3,4,5]
 evens = list(filter(lambda n:n%2==0, numbers))
 squares = list(map(lambda n:n**2, numbers))
 ```
+
+### Nested statements and Scope
+
+It's important to understand how Python deals
+with the variable names you assigned. When
+you create a variable name in Python, that
+name is stored in what's called the `namespace`, and variable names also have a
+`scope`. And the `scope` determines the
+visibility of that variable name to
+other parts of your code.
+
+```py
+x = 25
+
+def printer():
+    x = 50
+    return x
+
+print(x) # 25
+print(printer()) # 50
+```
+
+scope allows Python to understand and have
+a set of rules to decide which variables
+you're referencing in your code.
+
+`LEGB` rule, this is the order that Python is going to look for variables.
+
+- `L`: Local - Names assigned in any way within a function (def or lambda), and not declared global in that function
+
+- `E` Enclosing function locals - Names in the local scope of any and all enclosing functions (def or lambda), from inner to outer. Nested functions
+
+- `G`: Global (module) - Names assigned at the top-level of a module file, or declared global in a `def` within the file
+
+- `B`: Built-in (Python) - Names preassigned in the built-in names module
+
+```py
+# Global
+name = 'This is a global string'
+
+def greet():
+    # Enclosing
+    name = 'Sammy'
+
+    def hello():
+        # Local
+        name = 'Im a local'
+
+        print('Hello ' + name)
+    hello()
+
+greet() # Hello Sammy
+```
+
+Reassign global variable with `global` keyword
+
+```py
+x = 50
+
+def func():
+    global x
+    x = 200
+```
+
+Avoid using `global` keyword
+
+```py
+x = 50
+
+def func(x):
+    return 200
+
+x = func(x)
+```
