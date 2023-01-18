@@ -37,6 +37,25 @@ def grab_image():
 
         break
 
+def get_book_titles():
+    base_url = 'http://books.toscrape.com/catalogue/page-{}.html'
+
+    for page in range(1, 6):
+        print('\nScrap Page {}\n'.format(page))
+
+        scrape_url = base_url.format(page)
+        response = requests.get(scrape_url)
+
+        soup = bs4.BeautifulSoup(response.text, 'lxml')
+        
+        counter = 1
+        for book_element in iter(soup.select('.product_pod')):
+            if len(book_element.select('.star-rating.Two')) > 0:
+                book_title = book_element.select('a')[1]['title']
+                yield (page, counter, book_title)
+
+                counter += 1
+
 if __name__ == '__main__':
     # title = grab_title()
     # print(title)
@@ -44,4 +63,8 @@ if __name__ == '__main__':
     # for text in grab_classes():
     #     print(text)
 
-    grab_image()
+    # grab_image()
+
+    print('All 2 stars books')
+    for page, index, title in get_book_titles():
+        print('Page {}: #{} - {}'.format(page, index, title))

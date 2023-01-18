@@ -2637,3 +2637,51 @@ def grab_image():
 if __name__ == '__main__':
     grab_image()
 ```
+
+### Book examples
+
+Working with multiple pages and items
+
+We've seen how to grab elements one at a time. But
+realistically, we want to be able to grab multiple elements,
+most likely across multiple pages.
+
+This is where we can combine our prior python
+knowledge with the web scraping libraries to create
+powerful scripts
+
+We will use a site specifically designed to practice
+web scraping: [site](www.toscrape.com)
+
+We will practice grabbing elements across multiple pages.
+
+Get the title of every book with a 2 star rating
+
+```py
+import requests
+import bs4
+
+def get_book_titles():
+    base_url = 'http://books.toscrape.com/catalogue/page-{}.html'
+
+    for page in range(1, 6):
+        print('\nScrap Page {}\n'.format(page))
+
+        scrape_url = base_url.format(page)
+        response = requests.get(scrape_url)
+
+        soup = bs4.BeautifulSoup(response.text, 'lxml')
+        
+        counter = 1
+        for book_element in iter(soup.select('.product_pod')):
+            if len(book_element.select('.star-rating.Two')) > 0:
+                book_title = book_element.select('a')[1]['title']
+                yield (page, counter, book_title)
+
+                counter += 1
+
+if __name__ == '__main__':
+    print('All 2 stars books')
+    for page, index, title in get_book_titles():
+        print('Page {}: #{} - {}'.format(page, index, title))
+```
