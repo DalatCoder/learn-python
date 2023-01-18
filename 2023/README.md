@@ -2597,3 +2597,43 @@ if __name__ == '__main__':
     for text in grab_classes():
         print(text)
 ```
+
+### Grabbing an Image
+
+BeautifulSoup can scan a page, locate the `<img>` tags
+and grab these URLs.
+
+Then we can download the URLs as images and write them
+to the computer.
+
+```py
+import requests
+import bs4
+
+url = 'https://en.wikipedia.org/wiki/Jonas_Salk'
+
+def grab_image():
+    result = requests.get(url)
+    soup = bs4.BeautifulSoup(result.text, 'lxml')
+
+    for element in soup.select('.thumbimage'):
+        src = element['src']
+        link = 'https:' + src
+
+        image_link = requests.get(link)
+
+        # raw content of the actual image
+        # binary file
+        print(image_link.content)
+
+        # save file
+        # write binary
+        with open('image.jpg', 'wb') as f:
+            f.write(image_link.content)
+
+        # only save the first image
+        break
+
+if __name__ == '__main__':
+    grab_image()
+```
