@@ -2281,3 +2281,129 @@ result = a + b
 ```
 
 To quit, type `q`
+
+### Python Regex
+
+We already know we can search for substrings within a larger
+string with the `in` operator
+
+- `"dog" in "my dog is great"` --> `True`
+- `"dog" in "my cat is great"` --> `False`
+
+This has severe limitatiions, we need to know the exact string, and
+need to perform additional operations to account for capitalization
+and punctuation.
+
+What if we only know the pattern structure of the string we're
+looking for? Like an email or phone number?
+
+Regular Expressions (regex) allow us to search for general
+patterns in text data!
+
+For example, a simple email format can be: `user@email.com`.
+We know in this case we're looking for a pattern:
+`text` + `@` + `text` + `.com`
+
+So what I can use regex for is to construct a generalized
+pattern to search for something like this.
+
+The `re` library allows us to create specialized pattern strings
+and then search for matches within text. The primary skill set
+for regex is understanding the special syntax for these
+pattern strings.
+
+Don't feel like you need to memorize these patterns! Focus on
+understanding how to look up the information.
+
+- Phone number: `(555)-555-5555`
+- Regex pattern: `r"(\d\d\d)-\d\d\d-\d\d\d\d"`
+
+  - `r""`: python syntax
+  - `\d`: pattern for a digit
+  - `( ) - -`: exact text
+
+- Or: `r"(\d{3})-\d{3}-\d{4}"`
+
+Using `regex` to find a normal string
+
+```py
+text = "The agent's phone number is 408-555-1234. Call soon!"
+
+if 'phone' in text:
+    pass
+
+import re
+
+pattern = 'phone'
+match = re.search(pattern, text)
+
+match.span() # get first actual index
+math.start() # first start index
+match.end() # first end index
+
+matches = re.findall(pattern, text)
+
+for match in re.finditer(pattern, text):
+    match_text = match.group()
+    pass
+```
+
+Regular expressions patterns: `Identifiers`
+
+- `\d`: A digit (placeholder for any digits), `file_\d\d` -> `file_25`
+- `\w`: Alphanumeric (a letter or a number), `\w-\w\w\w` -> `A-b_1`
+- `\s`: White space, `\a\sb\sc` -> `a b c`
+- `\D`: A non digit, `\D\D\D` -> `ABC`
+- `\W`: Non-alphanumeric, `\W\W\W\W\W` -> `*-+=)`
+- `\S`: Non-whitespace, `\S\S\S\S` -> `Yoyo`
+
+```py
+text = 'My phone number is 408-555-1234'
+
+phone = re.search('408-555-1234', text)
+phone = re.search(r'\d\d\d-\d\d\d-\d\d\d\d', text)
+```
+
+Regular expressions patterns: `Quantifiers`
+
+- `+`: Occurs one or more times, `Version \w-\w+` -> `Version A-b1_1`
+- `{3}`: Occurs exactly 3 times, `\D{3}` -> `abc`
+- `{2,4}`: Occurs 2 to 4 times, `\d{2,4}` -> `123`
+- `{3,}`: Occurs 3 or more, `\w{3,}` -> `anycharacters`
+- `{*}`: Occurs zero or more times, `A*B*C*` -> `AAACC`
+- `?`: Once or none, `plurals?` -> `plural`
+
+```py
+text = 'My phone number is 408-555-1234'
+
+phone = re.search('408-555-1234', text)
+phone = re.search(r'\d{3}-\d{3}-\d{4}', text)
+```
+
+Now we want to do two tasks as the same time
+
+- Extract the area code `408`
+- Extract the full phone number `408-555-1234`
+
+What we can do is we can use groups for any general tasks
+that involes grouping together regex. Using `()` to group.
+
+```py
+text = 'My phone number is 408-555-1234'
+
+# compile 3 group
+phone_pattern = re.compile(r'(\d{3})-(\d{3})-(\d{4})')
+results = re.search(phone_pattern, text)
+results.group()
+
+results.group(1) # area code
+results.group(2)
+results.group(3)
+```
+
+Addtional regex syntax
+
+- or: `re.search(r'cat|dog', 'The cat is here')`
+- wildcard: `re.findall(r'.at', 'The cat is here')`
+- start with: `^`
+- end with: `$`
