@@ -2485,3 +2485,66 @@ comp_file.close()
 zip_obj = zipfile.ZipFile('comp_file.zip', 'r')
 zip_obj.extractall('extracted_content')
 ```
+
+## Web Scraping with Python
+
+### Introduction to web scraping
+
+Web scraping is a general term for techniques involving
+automating the gathering of data from a website.
+
+In this section, we will learn how to use Python to conduct web
+scraping tasks such as downloading images or information off
+a website.
+
+In order to web scrape with Python, we need to understand
+the basic concepts of how a website works.
+
+When a browser loads a website, the user gets to see what is known
+as the `front-end` of the website.
+
+Main things we need to understand
+
+- Rules of web scraping
+- Limitations of web scraping
+- Basic HTML and CSS
+
+Rules of web scraping
+
+- Always try to get permission before scraping
+- If you make too many scraping attempts or requests, your IP
+  address could get blocked
+- Some sites automatically block scraping software
+
+Limitations of web scraping
+
+- In general every website is unique, which means every
+  web scraping script is unique
+- A slight change or update to a website may completely break
+  your web scraping script
+
+  Main frontend components of a website
+
+  - HTML
+  - CSS
+  - JS
+
+For effective basic web scraping, we only need to have a
+basic understanding of HTML and CSS
+
+Python can view these HTML and CSS elements programmatically,
+and then extract information from the website.
+
+To web scrape with Python, we can use these libraries
+
+- `BeatifulSoup`
+- `requests`
+
+These are external libraries outside of Python, so you need
+to install them with either `conda` or `pip` at your commandline.
+
+Directly at your command line use
+
+- `pip install requests`
+- `pip install lxml`
+- `pip install bs4`
