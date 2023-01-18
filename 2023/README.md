@@ -1346,3 +1346,117 @@ class Circle():
 c = Circle(2)
 c.get_circumference()
 ```
+
+### Inheritance and Polymorphism
+
+Inhertitance is basically a way to form new classes using
+classes that have already defined. The benefits of inheritance
+are the ability to reuse code that you've already worked on and
+reduce the complexity of a program.
+
+```py
+# base class
+class Animal():
+    def __init__(self):
+        print("ANIMAL CREATED")
+
+    def who_am_i(self):
+        print('I am an animal')
+
+    def eat(self):
+        print('I am eating')
+
+a = Animal()
+a.who_am_i()
+a.eat()
+```
+
+The `Dog` class inherits from the `Animal` class
+
+```py
+# Derived class
+class Dog(Animal):
+    def __init__(self):
+        Animal.__init__(self)
+        print("DOG CREATED")
+
+    # override base method
+    def who_am_i(self):
+        print('I am a dog')
+
+    def bark(self):
+        print('WOOF!')
+
+d = Dog()
+d.who_am_i()
+d.eat()
+```
+
+In Python, polymorphism refers to the way in which
+different object classes can share the same method name.
+and then those methods can be called from the same
+place, even though a variety of different objects might be passed
+in.
+
+```py
+class Dog():
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        return self.name + ' says woof!'
+
+class Cat():
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        return self.name + ' says meow!'
+
+niko = Dog('niko')
+felix = Cat('felix')
+
+niko.speak()
+felix.speak()
+
+for pet in [niko, felix]:
+    print(type(pet))
+    print(pet.speak())
+
+# don't care what pet actually is
+# only care about the speak method on each pet
+# commonly used
+def pet_speak(pet):
+    print(pet.speak())
+
+pet_speak(niko)
+pet_speak(felix)
+```
+
+A more common practice is to use `abstract clsases` and
+`inheritance`.
+
+```py
+class Animal():
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        raise NotImplementedError("Subclass must implement this abstract method")
+```
+
+```py
+class Dog(Animal):
+    def speak(self):
+        return self.name + ' says woof!'
+
+class Cat(Animal):
+    def speak(self):
+        return self.name + ' says meow!'
+
+fido = Dog('Fido')
+isis = Cat('Isis')
+
+print(fido.speak())
+print(isis.speak())
+```
