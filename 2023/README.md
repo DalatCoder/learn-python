@@ -2826,3 +2826,62 @@ for index,email in enumerate(all_emails):
 
 csv_writer.close()
 ```
+
+### Working with PDF file in Python
+
+PDF stands for Portable Document Format and was
+developed by Adobe in the 1990s.
+
+The most important thing to keep in mind is that while
+PDFs share the same extensioin and can be viewed
+in PDF readers, many PDFs are `not` machine readable through
+Python.
+
+Since PDFs mainly encapsulate and display a fixed-layout flat
+document, there is no machine readable standard format,
+unlike CSV files.
+
+This means that a PDF that was simply scanned is highly
+unlikely to be readable by Python.
+
+Addtitions to PDFs such as images, tables, format
+adjustments can also render a PDF unreadable by Python.
+
+There are many paid PDF programs that can read and
+extract from these files, but we will use the open-source
+and free `PyPDF2` library.
+
+Install library: `pip install PyPDF2`
+
+```py
+import PyPDF2
+
+# read binary mode
+f = open('test.pdf', 'rb')
+pdf_reader = PyPDF2.PdfFileReader(f)
+
+print(pdf_reader.numPages)
+
+page_one = pdf_reader.getPage(0)
+page_one_text = page_one.extractText()
+
+f.close()
+```
+
+Write to PDF
+
+```py
+import PyPDF2
+
+f = open('test.pdf', 'rb')
+pdf_reader = PyPDF2.PdfFileReader(f)
+print(pdf_reader.numPages)
+page_one = pdf_reader.getPage(0)
+
+pdf_writer = PyPDF2.PdfFileWriter()
+pdf_writer.addPage(page_one)
+
+# writer binary
+pdf_output = open('output.pdf', 'wb')
+pdf_writer.write(pdf_output)
+```
