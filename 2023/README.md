@@ -2407,3 +2407,63 @@ Addtional regex syntax
 - wildcard: `re.findall(r'.at', 'The cat is here')`
 - start with: `^`
 - end with: `$`
+
+### Timing your Python code
+
+As you learn more Python, you will
+discover multiple solutions for a single task
+and you may find yourself trying to figure
+out the most efficient approach.
+
+An easy way to do this is to time your code's
+performance.
+
+We will focus on 3 ways of doing this:
+
+- Simply tracking time elapsed
+- Using the `timeit` module
+- Special `%%timeit` magic for Jupyter notebooks
+
+```py
+def func_one(n):
+    return [str(num) for num in range(n)]
+
+def func_two(n):
+    return list(map(str, range(n)))
+
+func_one(10)
+func_two(10)
+```
+
+Simple solutions
+
+```py
+# current time before
+start_time = time.time()
+
+# run code
+func_one(10000000)
+
+# current time after running code
+end_time = time.time()
+
+# elapsed time
+elapsed_time = end_time - start_time
+```
+
+Using `timeit` module
+
+```py
+import timeit
+
+stmt = '''
+func_one(100)
+'''
+
+setup = '''
+def func_one(n):
+    return [str(num) for num in range(n)]
+'''
+
+timeit.timeit(stmt, setup, number=100000)
+```
