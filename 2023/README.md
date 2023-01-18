@@ -2685,3 +2685,53 @@ if __name__ == '__main__':
     for page, index, title in get_book_titles():
         print('Page {}: #{} - {}'.format(page, index, title))
 ```
+
+## Working with Images in Python
+
+In this section we will focus on learning how to
+work with images with the `Pillow` library. We'll
+install it with `pip install pillow` and then show
+you how to open and save image files and interact with
+images.
+
+We will use the Pillow library for this,
+which is a fork of the `PIL` (Python Imaging Library)
+with easy to use function calls.
+
+Install library at your command line with: `pip install pillow`
+
+```py
+from PIL import Image
+
+image = Image.open('example.jpg')
+
+print(type(image))
+image.show()
+
+print(image.size)
+print(image.filename)
+print(image.format_description)
+```
+
+Perform some operations on image
+
+- `crop`: cropping is just grabbing a subsection
+  of the image.
+
+```py
+from PIL import Image
+
+image = Image.open('example.jpg')
+
+# crop top left
+x = 0
+y = 0
+w = 120
+h = 120
+
+image.crop((x,y,w,h))
+image.resize((120,120))
+image.rotate(90)
+
+image.save('test.jpg')
+```
