@@ -1842,7 +1842,7 @@ Run test
 python test_cap.py
 ```
 
-### Decorators
+## Decorators
 
 Decorators allow you to `decorate` a function.
 
@@ -2021,3 +2021,133 @@ a new website or point to another page.
 So they're really commonly used in web frameworks such as
 Django or Flask, which is why it's important to understand
 behind the scenes what the decorator is actually doing.
+
+## Generators
+
+We've learned how to create functions with `def` and the `return`
+statement.
+
+`Generator` functions allow us to write a function
+that can send back a value and then later resume to pick up where it
+left off.
+
+This type of function is a generator in Python, allowing us to
+generate a sequence of values over time. The main different in
+syntax will be the use of a `yield` statement.
+
+When a `generator` function is compiled, they become an object
+that supports an `iteration protocol`.
+
+that means when they are called in your code they don't actually
+return a value and then exit.
+
+Generator functions will automatically suspend and resume
+their execution and state around the last point of value
+generation.
+
+The advantage is that instead of having to compute an entire
+series of values up front, the `generator` computes one values
+and waits until the next value is called for.
+
+So you can imagine if you wanted to get all the numbers between
+`1` and `1.000.000`, you have two options
+
+- start generating values `1`, `2`, `3`,... and continue to
+  feed them that way in the for loop
+
+- or you would create a giant list of numbers [1..1000000] and
+  then slowly pick of those numbers from memory
+
+For example, the `range()` function doesn't produce an list
+in memory for all the values from start to stop. Instead, it
+just keeps track of the last number and the step size, to provide
+a flow of numbers.
+
+If a user did need the list, they have to transform the generator
+to a list with `list(range(0,10))`
+
+Normal function
+
+```py
+def create_cubes(n):
+    result = []
+
+    for x in range(n):
+        result.append(x**3)
+
+    return result
+
+create_cubes(1000000)
+```
+
+What if we just one 1 value at a time in a for loop instead of
+that whole list stored in memory.
+
+In fact, we just need the previous value and then whatever
+the formula is to get to the next value in order to generate
+all the values.
+
+Generator
+
+```py
+def create_cubes(n):
+    for x in range(n):
+        yield x**3
+
+for x in create_cubes(1000000):
+    print(x)
+```
+
+Get list of `fibonaci` numbers
+
+```py
+def gen_fibon(n):
+
+    a = 1
+    b = 1
+    for i in range(n):
+        yield a
+        a,b = b,a+b
+
+for number in gen_fibon(10):
+    print(number)
+```
+
+The key to fully understanding `generators` is the `next` function
+and the `iter` function.
+
+```py
+def simple_gen():
+    for x in range(3):
+        yield x
+
+for number in simple_gen():
+    print(number)
+
+g = simple_gen()
+print(next(g)) # 0
+print(next(g)) # 1
+print(next(g)) # 2
+print(next(g)) # StopIteration Error
+
+# for loop automatically catches this error and stops calling next
+```
+
+The `iter` function basically allows us to automatically iterate
+through a normal object that you may not expect.
+
+```py
+s = 'hello'
+
+for letter in s:
+    print(letter)
+
+next(s) # error
+
+s_iter = iter(s)
+next(s_iter) # h
+next(s_iter) # e
+next(s_iter) # l
+next(s_iter) # l
+next(s_iter) # o
+```
