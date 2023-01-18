@@ -1841,3 +1841,183 @@ Run test
 ```sh
 python test_cap.py
 ```
+
+### Decorators
+
+Decorators allow you to `decorate` a function.
+
+You have a function
+
+```py
+def func():
+    # Something
+    pass
+```
+
+Now, you want to add some new capabilities to the function by editting the old function
+
+```py
+def func():
+    # Something
+    # Another things
+    pass
+```
+
+You now have two options
+
+- Add that extra code to your old function
+- Create a brand new function that contanis the old code,
+  and then add new code to that
+
+But what if you then want to remove that extra `functionality`
+
+- You would need to delete it manually, or make sure to have
+  the old function
+- Is there a better way? Maybe an on/off switch to quickly
+  add this functionality?
+
+Decorators
+
+- Python has `decorators` that allow you to tack on
+  extra functionality to an already existing function
+- They use the `@` operator and are then placed on top
+  of the original function
+
+Now you can easily add on extra functionality with a decorator
+
+```py
+@some_decorator
+def func():
+    # Something
+    pass
+```
+
+This idea is pretty abstract in practice with Python syntax,
+so we will go through the steps of manually building out a
+decorator ourselves, to show what the `@` operator is doing
+behind the scenes.
+
+```py
+def func():
+    return 1
+
+func()
+
+# assign function to variable
+f = func
+f()
+```
+
+Passing funtion
+
+```py
+def hello(name = 'Jose'):
+    print('The hello() function has been executed!')
+
+    def greet():
+        return '\tThis is the greet() function inside hello'
+
+    def welcome():
+        return '\tThis is welcome() inside hello'
+    
+    print(greet())
+    print(welcome())
+
+    print('This is the end of the hello() function')
+
+hello()
+greet() # welcome is not defined | out of scope
+welcome() # welcome is not defined | out of scope
+```
+
+Function return function
+
+```py
+def hello(name = 'Jose'):
+    print('The hello() function has been executed!')
+
+    def greet():
+        return '\tThis is the greet() function inside hello'
+
+    def welcome():
+        return '\tThis is welcome() inside hello'
+
+    if name == 'Jose':
+        return greet
+    return welcome
+
+fn = hello()
+fn()
+```
+
+Passing function as an argument
+
+```py
+def hello():
+    return 'Hi Jose!'
+
+def other(some_fn):
+    print('Other code runs here!')
+    print(some_fn())
+
+other(hello)
+```
+
+So now we understand that we can return functions and we can
+have functions arguments with those two main tools, we're actually
+going to now be able to create a `decorator`.
+
+We have the tools we need to quickly create some sort of device
+that is an on/off switch when we want to add more functionality
+to a `decorator`.
+
+```py
+def new_decorator(original_func):
+
+    # extra functionality inside wrap_func
+    def wrap_func():
+        print('Some extra code, before the original function')
+        original_func()
+        print('Some extra code, after the original function')
+
+    return wrap_func
+```
+
+The actual original function is the present, and then we're going
+to essentially put it inside a box and wrap aroud it, which is
+why this is called `decoration`. So you're kind of
+decorating this function with some wrapping paper.
+
+```py
+def func(): 
+    print('I want to be decorated')
+
+new_decorator(func)()
+
+decorated_func = new_decorator(func)
+decorated_func()
+```
+
+Sugar syntax
+
+```py
+# turn on
+@new_decorator
+def func(): 
+    print('I want to be decorated')
+
+# turn off
+# @new_decorator
+def func(): 
+    print('I want to be decorated')
+
+func()
+```
+
+When you are going to be using a web framework or someone else's
+library and just adding in these new decorators to maybe render
+a new website or point to another page.
+
+So they're really commonly used in web frameworks such as
+Django or Flask, which is why it's important to understand
+behind the scenes what the decorator is actually doing.
