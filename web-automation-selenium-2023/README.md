@@ -440,3 +440,45 @@ change (text in text box)
 
 `get_attribute()` - gets initial content element of attribute
 that might change (initial value of text in text box)
+
+## Note for setup
+
+Move `chromedriver` executable to home directory at:
+`/Users/dalatcoder/bin` (create `bin` folder for organization)
+
+Change `CHROMEDRIVER_PATH` in `config.env` to `CHROMEDRIVER_PATH=/Users/dalatcoder/bin/chromedriver`
+
+Give permissions to the executable with
+
+- `xattr -d com.apple.quarantine chromedriver`
+- `spctl --add --label 'Approved' chromedriver`
+
+## Project: Wikipedia Scraper
+
+Goal: Scrape link information from 4 main div sections
+on Wikipedia
+
+- From today's featuerd article
+- In the news
+- Did you know...
+- On this day
+
+And then,
+
+- Use what we've learned about element locators to construct a dictionary of links by div section
+- Store information on each link: title, text and href
+- Dictionary structure will look like:
+
+```py
+result = {
+    'div identifier': [
+        {
+            title: '',
+            text: '',
+            href: ''
+        }
+    ]
+}
+```
+
+See notebook [Notebook](./selenium-udemy/proj1.ipynb)
