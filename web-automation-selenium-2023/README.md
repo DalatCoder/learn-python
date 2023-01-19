@@ -506,3 +506,43 @@ driver.get('second_url')
 # close the second window
 driver.close()
 ```
+
+### Opening and Closing Tabs
+
+Opening and closing tabs works like windows
+
+- `driver.switch_to.new_window('tab')`
+- `driver.close()` only when more than 1 tab
+
+To switch between tabs, we can use `window handles`, unique
+IDs for windows/tabs
+
+- `driver.current_window_handle`
+- `driver.window_handles` - list all window handles from
+  session
+- `driver.switch_to.window('window_handle')`
+
+Old method - executing Javascript:
+`driver.execute_script('window.open("url")')`
+
+```py
+driver.get('first_url')
+dirver.switch_to.new_window('tab')
+driver.get('second_url')
+
+# close the second tab
+driver.close()
+```
+
+To switch between tabs
+
+```py
+handles = driver.window_handles
+driver.switch_to.window(handles[1])
+driver.switch_to.window(handles[0])
+
+print(driver.current_window_handle)
+
+# close tab
+driver.close()
+```
