@@ -225,3 +225,218 @@ driver = webdriver.Chrome(service=service)
 driver.get('https://someurl.com')
 driver.quit()
 ```
+
+## Locating Page Elements
+
+### Locating by CSS Selector
+
+All ways of locating page elements with Selenium depend on 2 parts
+
+- By: how do you want to find elements?
+- String: what string tells us what to find?
+
+Two WebDriver methods to find element(s)
+
+- `find_element()`: find one (or first) element satisfying locator conditions
+- `find_elements()`: find all elements satisfying locator conditions
+
+### Locating by ID
+
+ID is unique, so very useful for selecting elements in Selenium
+
+```py
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+
+# Driver setup
+service = Service(executable_path='path/to/driver')
+driver = webdriver.Chrome(serivce=service)
+
+# Get URL
+driver.get('https://someurl.com/')
+
+# Find element by ID
+element1 = driver.find_element(By.ID, 'id')
+element1.get_attribute('innerHTML')
+element1.get_attribute('data-name')
+
+# Find all elements by class name
+all_elements = driver.find_elements(By.CSS_SELECTOR, '.class')
+all_elements = driver.find_elements(By.CSS_SELECTOR, '#id')
+```
+
+### Locating by Name
+
+Some elements will have a `name` attribute associated with
+their HTML tag.
+
+Mostly seen with buttons, forms, form elements, etc.
+
+Unlike ID, not guaranteed to be unique within the page.
+
+The `name` attribute is mostly relevant for HTTP requests
+to the server.
+
+```py
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+
+# Driver setup
+service = Service(executable_path='path/to/driver')
+driver = webdriver.Chrome(serivce=service)
+
+# Get URL
+driver.get('https://someurl.com/')
+
+# Find element by Name
+elements = driver.find_elements(By.NAME, 'title')
+elements[0].get_attribute('innerHTML')
+elements[0].get_attribute('data-name')
+
+element = driver.find_element(By.CSS_SELECTOR, 'input[name="title"]')
+```
+
+### Locating by Tag Name
+
+HTML tags are the basic unit of web page setup
+
+Selenium lets us locate elements by their HTML tag name
+
+Usually more useful for finding all elements, find all links with `a` tag
+
+```py
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+
+# Driver setup
+service = Service(executable_path='path/to/driver')
+driver = webdriver.Chrome(serivce=service)
+
+# Get URL
+driver.get('https://someurl.com/')
+
+# Find element by TagName
+elements = driver.find_elements(By.TAG_NAME, 'a')
+elements[0].get_attribute('innerHTML')
+elements[0].get_attribute('data-name')
+```
+
+### Locating by XPath
+
+XPath is th elanguage for locating nodes in an XML document
+
+HTML can be an implementation of XML - this means we can use
+XPath to locate elements
+
+Very useful for navigating when element of interest doesn't
+have id or name attribute
+
+Can search in relative (advised) or absolute (not advised) terms.
+
+Example syntax
+
+- `/html/body/input[1]`: Absolute path
+- `//input[1]` - first input on page
+- `//input[@id='search-box']` - input with ID of 'search-box'
+- `//a[@title="Title"]/../div` - div one parent above link
+  with the title `Title`
+
+Chrome DevTools lets us copy the XPath from `sources` tab.
+
+```py
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+
+# Driver setup
+service = Service(executable_path='path/to/driver')
+driver = webdriver.Chrome(serivce=service)
+
+# Get URL
+driver.get('https://someurl.com/')
+
+# Find element by XPath
+elements = driver.find_elements(By.XPATH, '//input')
+elements[0].get_attribute('innerHTML')
+elements[0].get_attribute('data-name')
+```
+
+Test XPath with Chrome Devtools
+
+```js
+$x("//a");
+$x("//a[@title]");
+```
+
+### Locating by Link Text
+
+`<a>` tags will usually have user-visible text showing on
+a web page. Useful when you know some or all of the link text
+withinn the anchor `<a>` tag.
+
+Selenium lets us search with exact link text `By.LINK_TEXT`
+or by partial match `By.PARTIAL_LINK_TEXT`
+
+### Chaining locators
+
+- All the locators we've reviewed can be chained together
+- Useful for navigating parent/child elements
+- Might be more readable than using XPath in certain cases
+
+```py
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+
+# Driver setup
+service = Service(executable_path='path/to/driver')
+driver = webdriver.Chrome(serivce=service)
+
+# Get URL
+driver.get('https://someurl.com/')
+
+# Find element by XPath
+element1 = driver.find_element(By.ID, 'id')
+element1[0].get_attribute('innerHTML')
+element1[0].get_attribute('data-name')
+
+element2 = element1.find_element(By.CSS_SELECTOR, '.class')
+```
+
+### Useful web element methods and attributes
+
+The elements you find on the page are `WebElement` objects
+in Selenium. It's useful to know some of the more common
+attributes and methods associated with `WebElement` objects.
+
+See documentatioin for complete list.
+
+Attributes
+
+- `text`
+- `tag_name`
+- `size`
+- `is_displayed()`
+- `is_enabled()`
+- `is_selected()`
+
+Methods
+
+- `screenshot()`
+- `find_element()`
+- `find_elements()`
+- `get_dom_attribute()`
+- `get_attribute()`
+- `get_property()`
+- `value_of_css_property()`
+
+`get_dom_attribute()` - gets attribute from underlying HTML (can change with JS)
+
+`get_property()` - get current state of attribute that might
+change (text in text box)
+
+`get_attribute()` - gets initial content element of attribute
+that might change (initial value of text in text box)
