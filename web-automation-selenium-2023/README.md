@@ -577,3 +577,17 @@ driver.switch_to.frame(iframe)
 driver.find_element(By.ID, 'inside-iframe')
 driver.switch_to.default_content()
 ```
+
+### Browser History
+
+Selenium does not allow access to browser history. However, you
+can execute common browser history commands like `forward`
+and `back`
+
+```py
+driver.get('first')
+driver.get('second')
+
+driver.back()
+driver.forward()
+```
