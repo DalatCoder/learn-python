@@ -482,3 +482,27 @@ result = {
 ```
 
 See notebook [Notebook](./selenium-udemy/proj1.ipynb)
+
+## Page Navigation
+
+### Opening and Closing Windows
+
+In older versioins of Selenium, we had to
+instantiate a new webdriver in order to open a new window or new tab.
+
+Now, we can switch more easily with:
+`driver.switch_to.new_window('window')`
+
+And close secondary/active windows with
+
+- `driver.close()`
+- The above method doesn't work if only 1 window active
+
+```py
+driver.get('first_url')
+dirver.switch_to.new_window('window')
+driver.get('second_url')
+
+# close the second window
+driver.close()
+```
