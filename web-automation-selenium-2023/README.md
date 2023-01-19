@@ -665,3 +665,22 @@ driver.execute_script(
     ```
 )
 ````
+
+### Resizing Windows
+
+Changing window size could be useful for testing website
+accessibility, mobile, etc.
+
+Useful methods in Selenium for window size and position:
+
+- `driver.get_window_size()`: get size
+- `driver.get_window_position()`: get position
+- `driver.get_window_rect()`: get size & position
+
+Useful methods in Selenium for window size and position
+
+- `driver.set_window_size()`
+- `driver.set_window_position()`
+- `driver.set_window_rect()`
+- `driver.minimize_window()`
+- `driver.maximize_window()`
