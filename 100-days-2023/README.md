@@ -270,3 +270,22 @@ if choice1 == "left":
 else:
   print("You fell into a hole. Game Over.")
 ```
+
+## Day 4: Beginner - Randomisation and Python Lists
+
+Day 4 goals:
+
+- Randomisation
+- Python Lists
+- Project: Rock - Paper - Scissors
+
+### Random Module
+
+Python uses Mersenne Twister pseudorandom number generator.
+
+```py
+import random
+
+n = random.randint(1, 10)
+print(n)
+```
