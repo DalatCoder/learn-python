@@ -591,3 +591,21 @@ driver.get('second')
 driver.back()
 driver.forward()
 ```
+
+### Alerts
+
+Web pages sometimes have alerts or pop-up dialogs that
+show up. In order to interact with them, we should
+switch to them like tabs or iFrames.
+
+Alert objects have methods for accepting, dismissing, etc.
+
+```py
+driver.get('url')
+alert = driver.switch_to.alert
+driver.execute_script('alert("Hey!")')
+
+alert.text
+alert.accept()
+alert.dismiss()
+```
