@@ -609,3 +609,59 @@ alert.text
 alert.accept()
 alert.dismiss()
 ```
+
+### Cookies and Storage
+
+Selenium provides nice methods for interacting with cookies
+on a web page
+
+- `driver.get_cookies()`
+- `driver.add_cookie()`
+
+However, there's no built-in method for interacting with
+local or session storage.
+
+Instead, we have to rely on executing JavaScript
+`driver.execute_script()`
+
+Working with Cookies
+
+```py
+driver.get('url')
+
+driver.get_cookies()
+driver.add_cookie({
+    'name': 'c_name',
+    'value': 'c_value'
+})
+```
+
+Working with LocalStorage
+
+````py
+driver.execute_script(
+    ```
+        window.localStorage.setItem('key', 'value')
+    ```
+)
+driver.execute_script(
+    ```
+    return window.localStorage.getItem('key')
+    ```
+)
+````
+
+Working with Session Storage
+
+````py
+driver.execute_script(
+    ```
+        window.sessionStorage.setItem('key', 'value')
+    ```
+)
+driver.execute_script(
+    ```
+    return window.sessionStorage.getItem('key')
+    ```
+)
+````
