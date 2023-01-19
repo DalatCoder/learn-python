@@ -546,3 +546,34 @@ print(driver.current_window_handle)
 # close tab
 driver.close()
 ```
+
+### Navigating iFrames
+
+iFrames or inline frame load other HTML elements inside a
+web page.
+
+Kind of link `HTML within HTML`
+
+Elements inside an iFrame `can't` be selected directyly with
+Selenium.
+
+Instead, you have to switch from the `main` HTML into the
+`iFrame`
+
+Same problem in reverse - main HTML not accessible within iFrame
+
+Steps:
+
+- Find iFrame element
+- Switch to iFrame - `driver.switch_to.frame(WebElement)`
+- Find element of interest within iFrame
+- Switch back to main HTML - `driver.switch_to.default_content()`
+
+```py
+driver.get('url')
+iframe = driver.find_element(By.ID, 'iframe')
+
+driver.switch_to.frame(iframe)
+driver.find_element(By.ID, 'inside-iframe')
+driver.switch_to.default_content()
+```
