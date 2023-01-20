@@ -925,3 +925,154 @@ Goal: fill out and submit the booking request form at
 - with the elements (e.g. clicking, selecting, checking, etc.)
 - Submit the form
 - Everything we do applies to other forms in real life - booking forms, surveys, searches, etc.
+
+## Wait
+
+### Implicit Waits
+
+Modern web pages may have elements that load at different times.
+
+This can cause problems if we try to find elements that
+don't yet exist on the page (but will in a second!)
+
+Selenium gives us a way to address this problem with `waits`.
+Waits can be
+
+- `Explicit`
+- `Implicit`
+
+Implit waits are a session setting during the life of your
+`WebDriver` object
+
+An implicit wait tells Selenium to continually check the
+DOM for some set amount of time for any element not found
+immediately.
+
+Generally, explicit waits are more useful than implicit
+waits or using `time.sleep()`.
+
+With explicit waits, you only wait as long as you have to - your program will run faster.
+
+Implicit waits don't provide information on `why/when` we're
+waiting.
+
+You can set implicit waits with the `implicitly_wait(seconds)`
+method.
+
+Set implicit waits
+
+```py
+# set implicit wait for the session
+driver.implicitly_wait(10)
+```
+
+It's generally better to use explicit waits instead of implicit waits.
+
+### Explicit Waits
+
+AS mentioned before, explicit waits in Selenium are more
+useful than implicit waits.
+
+Explicit waits sepcify conditions that need met before
+proceeding in the code. Ex: wait for form to load before
+filling it in.
+
+Setting explicit waits involves two objects:
+
+- A `WebDriverWait`
+- An `expected condition`
+
+Selenium provides a number of methods for expected conditions
+
+- `title_is`
+- `visibility_of_element_located`
+- `element_to_be_clickable`
+- and more!
+
+Explicit waits are a characteristic of better/more
+maintainable Selenium code.
+
+Explicit waits are more robuts againts network conditions than
+the typical alternative, `time.sleep()`. You may also want
+to put your explicit waits inside `try-catch-finally` blocks.
+
+Explicit waits imports
+
+```py
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# Explicit wait for element
+element = WebDriverWait(driver,5).until(
+  EC.element_to_be_clickable((By.ID, 'btn-id'))
+)
+
+# Compare to code without wait
+element = driver.find_element(By.ID, 'btn-id')
+```
+
+Practice with vanilla Python script
+
+```py
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+
+from settings import CHROMEDRIVER_PATH, SELENIUM_DOCS_SEARCH_URL
+
+service = Service(executable_path=CHROMEDRIVER_PATH)
+driver = webdriver.Chrome(service=service)
+driver.get(SELENIUM_DOCS_SEARCH_URL)
+
+input_element = driver.find_element(By.NAME, 'q')
+input_element.send_keys('explicit wait')
+input_element.submit()
+
+LINK_XPATH = '//*[@id="search-results"]/ul/li[1]/a'
+
+# fail, result element does not exist yet!
+result_element = driver.find_element(By.XPATH, LINK_XPATH)
+print(result_element.text)
+
+driver.quit()
+```
+
+Using explicit waits
+
+```py
+import time
+
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import ElementNotVisibleException
+
+from settings import CHROMEDRIVER_PATH, SELENIUM_DOCS_SEARCH_URL
+
+service = Service(executable_path=CHROMEDRIVER_PATH)
+driver = webdriver.Chrome(service=service)
+driver.get(SELENIUM_DOCS_SEARCH_URL)
+
+# noive way using time.sleep()
+time.sleep(3)
+input_element = driver.find_element(By.NAME, 'q')
+time.sleep(3)
+input_element.send_keys('explicit wait')
+time.sleep(3)
+input_element.submit()
+
+LINK_XPATH = '//*[@id="search-results"]/ul/li[1]/a'
+
+try:
+  result_element = WebDriverWait(driver,10).until(
+    EC.presence_of_element_located((By.XPATH, LINK_XPATH))
+  )
+  print(result_element.text)
+except ElementNotVisibleException:
+  print('Element not visible')
+finally:
+  time.sleep(4)
+  driver.quit()
+```
