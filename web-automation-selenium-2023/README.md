@@ -908,3 +908,20 @@ from selenium.webdriver.common.keys import Keys
 # Emulate Ctrl + D
 action.key_down(Keys.CONTROL).send_keys('d').release().perform()
 ```
+
+## Project: Form Filler
+
+Goal: fill out and submit the booking request form at
+`https://www.thegoldbugs.com/`
+
+- Text fields
+- Radio buttons
+- Checkboxes
+- Dropdowns
+
+- Use what we've learned about identifying elements to select
+  form fields.
+- Use what we've learned about filling in forms to interact
+- with the elements (e.g. clicking, selecting, checking, etc.)
+- Submit the form
+- Everything we do applies to other forms in real life - booking forms, surveys, searches, etc.
