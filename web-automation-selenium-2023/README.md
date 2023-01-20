@@ -792,3 +792,25 @@ select.select_by_value('value1')
 select.deselect_by_index(2)
 select.deselect_all()
 ```
+
+### Calendar Picker
+
+Calendar pickers are a common form element in many
+websites these days (think of an airline booking site)
+
+They're generally composed of three components of interest
+
+- An input field
+- JS/jQuery to make calendar popup
+- The calendar itself (i.i. a `<table>`)
+
+These components provide the outline of how to interact
+with calendar pickers
+
+- Find the calendar input element
+- Activate the JS/jQuery - e.g. with a click
+- Select date of interest from table
+
+You can also use `send_keys()` to simply fill out the date
+rather than picking it. Note that this method may still
+activate the calendar
