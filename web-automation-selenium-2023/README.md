@@ -734,3 +734,23 @@ You'll usually want to fill out a form field or clear it
 input_element.clear()
 input_element.send_keys('Filling forms is cool')
 ```
+
+### Radio Buttons and checkboxes
+
+Work similarly to buttons in Selenium
+
+- `click()` - click element
+- `is_selected()` - check if element is selected
+
+Checkboxes can be selected/deselected with a click;
+radio buttons cannot.
+
+```py
+checkbox = driver.find_element(By.ID, 'id')
+
+# check selected status
+checkbox.is_selected()
+
+# select via click
+checkbox.click()
+```
