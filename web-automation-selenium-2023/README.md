@@ -814,3 +814,33 @@ with calendar pickers
 You can also use `send_keys()` to simply fill out the date
 rather than picking it. Note that this method may still
 activate the calendar
+
+### File upload and Download
+
+File uploads involve sending text/keys to an input element.
+However, note that the path sent to the input element
+must be a real path and satisfy any upload restrictions (e.g.
+only `.png` files). Otherwise, you'll trigger an error
+
+File downloads tent to be straightforward: click on the
+element or download button of interest to activate the
+download. We can also change the download directory with
+`ChromeOptions()`
+
+Setting directory with ChromeOptions
+
+```py
+options = webdriver.ChromeOptions()
+options.add_experimental_options('prefs', {
+  'download.default_directory': 'path/to/directory'
+})
+
+driver = webdriver.Chrome(service=service, options=options)
+```
+
+For upload
+
+```py
+upload_element = driver.find_element(By.ID, 'upload')
+upload_element.send_keys('/Users/dalatcoder/downloads/test.png')
+```
