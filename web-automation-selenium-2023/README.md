@@ -884,3 +884,27 @@ Y = 0 # Y offset
 action.move_to_element_with_offset(slider_element,X,Y).click().perform()
 action.drag_and_drop_by_offset(slider_element,X,Y).perform()
 ```
+
+### Keyboard Actions
+
+As mentioned before, ActionChains enable us to
+automate basic user interactions in the browser.
+
+This includes key combinatioins that may be used as shortcuts - think of the keyboard shortcuts in Gmail.
+
+To use this functionality with special keys like Esc, Ctrl, etc., we'll need to import the Keys class.
+
+We need ActionChains to send keys to the browser, as
+opposed to a specific element, and to mimic key
+combos (e.g. Ctrl + P)
+
+We can use the methods `key_down()`, `key_up()`, and
+`release()` methods from ActionChains to mimic the key
+combos.
+
+```py
+from selenium.webdriver.common.keys import Keys
+
+# Emulate Ctrl + D
+action.key_down(Keys.CONTROL).send_keys('d').release().perform()
+```
