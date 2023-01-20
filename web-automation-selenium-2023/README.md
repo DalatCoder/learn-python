@@ -2,7 +2,48 @@
 
 [Udemy Link](https://udemy.com/course/web-automation-with-selenium-webdriver-and-python/learn/)
 
-## Overview
+Table of contents
+
+- [Web Automation with Selenium WebDriver and Python](#web-automation-with-selenium-webdriver-and-python)
+  - [1. Overview](#1-overview)
+    - [1.1. Chrome Dev Tools](#11-chrome-dev-tools)
+    - [1.2. Selenium](#12-selenium)
+  - [2. Locating Page Elements](#2-locating-page-elements)
+    - [2.1. Locating by CSS Selector](#21-locating-by-css-selector)
+    - [2.2. Locating by ID](#22-locating-by-id)
+    - [2.3. Locating by Name](#23-locating-by-name)
+    - [2.4. Locating by Tag Name](#24-locating-by-tag-name)
+    - [2.5. Locating by XPath](#25-locating-by-xpath)
+    - [2.6. Locating by Link Text](#26-locating-by-link-text)
+    - [2.7. Chaining locators](#27-chaining-locators)
+    - [2.8. Useful web element methods and attributes](#28-useful-web-element-methods-and-attributes)
+  - [3. Note for setup](#3-note-for-setup)
+  - [4. Project: Wikipedia Scraper](#4-project-wikipedia-scraper)
+  - [5. Page Navigation](#5-page-navigation)
+    - [5.1. Opening and Closing Windows](#51-opening-and-closing-windows)
+    - [5.2. Opening and Closing Tabs](#52-opening-and-closing-tabs)
+    - [5.3. Navigating iFrames](#53-navigating-iframes)
+    - [5.4. Browser History](#54-browser-history)
+    - [5.5. Alerts](#55-alerts)
+    - [5.6. Cookies and Storage](#56-cookies-and-storage)
+    - [5.7. Resizing Windows](#57-resizing-windows)
+  - [6. Automation of filling in Forms](#6-automation-of-filling-in-forms)
+    - [6.1. Buttons](#61-buttons)
+    - [6.2. Input Elements](#62-input-elements)
+    - [6.3. Radio Buttons and checkboxes](#63-radio-buttons-and-checkboxes)
+    - [6.4. Dropdown Menus](#64-dropdown-menus)
+    - [6.5. Calendar Picker](#65-calendar-picker)
+    - [6.6. File upload and Download](#66-file-upload-and-download)
+    - [6.7. Drag and Drop](#67-drag-and-drop)
+    - [6.8. Sliders](#68-sliders)
+    - [6.9. Keyboard Actions](#69-keyboard-actions)
+  - [7. Project: Form Filler](#7-project-form-filler)
+  - [8. Wait](#8-wait)
+    - [8.1. Implicit Waits](#81-implicit-waits)
+    - [8.2. Explicit Waits](#82-explicit-waits)
+    - [8.3. Adjusting Network Settings](#83-adjusting-network-settings)
+
+## 1. Overview
 
 Course curriculum
 
@@ -163,7 +204,7 @@ Selenium use cases in this course
 - A form fillter for a band booking form
 - A python unit test for testing a booking form
 
-### Chrome Dev Tools
+### 1.1. Chrome Dev Tools
 
 What is chrome devtools?
 
@@ -175,7 +216,7 @@ What is chrome devtools?
 - Console tab: View logged messages or run JS
 - Application tab: veiw and edit storage variables, cookies
 
-### Selenium
+### 1.2. Selenium
 
 What is Selenium?
 
@@ -226,9 +267,9 @@ driver.get('https://someurl.com')
 driver.quit()
 ```
 
-## Locating Page Elements
+## 2. Locating Page Elements
 
-### Locating by CSS Selector
+### 2.1. Locating by CSS Selector
 
 All ways of locating page elements with Selenium depend on 2 parts
 
@@ -240,7 +281,7 @@ Two WebDriver methods to find element(s)
 - `find_element()`: find one (or first) element satisfying locator conditions
 - `find_elements()`: find all elements satisfying locator conditions
 
-### Locating by ID
+### 2.2. Locating by ID
 
 ID is unique, so very useful for selecting elements in Selenium
 
@@ -266,7 +307,7 @@ all_elements = driver.find_elements(By.CSS_SELECTOR, '.class')
 all_elements = driver.find_elements(By.CSS_SELECTOR, '#id')
 ```
 
-### Locating by Name
+### 2.3. Locating by Name
 
 Some elements will have a `name` attribute associated with
 their HTML tag.
@@ -298,7 +339,7 @@ elements[0].get_attribute('data-name')
 element = driver.find_element(By.CSS_SELECTOR, 'input[name="title"]')
 ```
 
-### Locating by Tag Name
+### 2.4. Locating by Tag Name
 
 HTML tags are the basic unit of web page setup
 
@@ -324,7 +365,7 @@ elements[0].get_attribute('innerHTML')
 elements[0].get_attribute('data-name')
 ```
 
-### Locating by XPath
+### 2.5. Locating by XPath
 
 XPath is th elanguage for locating nodes in an XML document
 
@@ -371,7 +412,7 @@ $x("//a");
 $x("//a[@title]");
 ```
 
-### Locating by Link Text
+### 2.6. Locating by Link Text
 
 `<a>` tags will usually have user-visible text showing on
 a web page. Useful when you know some or all of the link text
@@ -380,7 +421,7 @@ withinn the anchor `<a>` tag.
 Selenium lets us search with exact link text `By.LINK_TEXT`
 or by partial match `By.PARTIAL_LINK_TEXT`
 
-### Chaining locators
+### 2.7. Chaining locators
 
 - All the locators we've reviewed can be chained together
 - Useful for navigating parent/child elements
@@ -406,7 +447,7 @@ element1[0].get_attribute('data-name')
 element2 = element1.find_element(By.CSS_SELECTOR, '.class')
 ```
 
-### Useful web element methods and attributes
+### 2.8. Useful web element methods and attributes
 
 The elements you find on the page are `WebElement` objects
 in Selenium. It's useful to know some of the more common
@@ -441,7 +482,7 @@ change (text in text box)
 `get_attribute()` - gets initial content element of attribute
 that might change (initial value of text in text box)
 
-## Note for setup
+## 3. Note for setup
 
 Move `chromedriver` executable to home directory at:
 `/Users/dalatcoder/bin` (create `bin` folder for organization)
@@ -453,7 +494,7 @@ Give permissions to the executable with
 - `xattr -d com.apple.quarantine chromedriver`
 - `spctl --add --label 'Approved' chromedriver`
 
-## Project: Wikipedia Scraper
+## 4. Project: Wikipedia Scraper
 
 Goal: Scrape link information from 4 main div sections
 on Wikipedia
@@ -483,9 +524,9 @@ result = {
 
 See notebook [Notebook](./selenium-udemy/proj1.ipynb)
 
-## Page Navigation
+## 5. Page Navigation
 
-### Opening and Closing Windows
+### 5.1. Opening and Closing Windows
 
 In older versioins of Selenium, we had to
 instantiate a new webdriver in order to open a new window or new tab.
@@ -507,7 +548,7 @@ driver.get('second_url')
 driver.close()
 ```
 
-### Opening and Closing Tabs
+### 5.2. Opening and Closing Tabs
 
 Opening and closing tabs works like windows
 
@@ -547,7 +588,7 @@ print(driver.current_window_handle)
 driver.close()
 ```
 
-### Navigating iFrames
+### 5.3. Navigating iFrames
 
 iFrames or inline frame load other HTML elements inside a
 web page.
@@ -578,7 +619,7 @@ driver.find_element(By.ID, 'inside-iframe')
 driver.switch_to.default_content()
 ```
 
-### Browser History
+### 5.4. Browser History
 
 Selenium does not allow access to browser history. However, you
 can execute common browser history commands like `forward`
@@ -592,7 +633,7 @@ driver.back()
 driver.forward()
 ```
 
-### Alerts
+### 5.5. Alerts
 
 Web pages sometimes have alerts or pop-up dialogs that
 show up. In order to interact with them, we should
@@ -610,7 +651,7 @@ alert.accept()
 alert.dismiss()
 ```
 
-### Cookies and Storage
+### 5.6. Cookies and Storage
 
 Selenium provides nice methods for interacting with cookies
 on a web page
@@ -666,7 +707,7 @@ driver.execute_script(
 )
 ````
 
-### Resizing Windows
+### 5.7. Resizing Windows
 
 Changing window size could be useful for testing website
 accessibility, mobile, etc.
@@ -685,9 +726,9 @@ Useful methods in Selenium for window size and position
 - `driver.minimize_window()`
 - `driver.maximize_window()`
 
-## Automation of filling in Forms
+## 6. Automation of filling in Forms
 
-### Buttons
+### 6.1. Buttons
 
 You can interact with buttons by:
 
@@ -723,7 +764,7 @@ action.click_and_hold(element).perform()
 action.release().perform()
 ```
 
-### Input Elements
+### 6.2. Input Elements
 
 You'll usually want to fill out a form field or clear it
 
@@ -735,7 +776,7 @@ input_element.clear()
 input_element.send_keys('Filling forms is cool')
 ```
 
-### Radio Buttons and checkboxes
+### 6.3. Radio Buttons and checkboxes
 
 Work similarly to buttons in Selenium
 
@@ -755,7 +796,7 @@ checkbox.is_selected()
 checkbox.click()
 ```
 
-### Dropdown Menus
+### 6.4. Dropdown Menus
 
 Dropdown menus are `<select>` elements in HTML. Options
 for the dropdown are contained in `<option>` tags.
@@ -793,7 +834,7 @@ select.deselect_by_index(2)
 select.deselect_all()
 ```
 
-### Calendar Picker
+### 6.5. Calendar Picker
 
 Calendar pickers are a common form element in many
 websites these days (think of an airline booking site)
@@ -815,7 +856,7 @@ You can also use `send_keys()` to simply fill out the date
 rather than picking it. Note that this method may still
 activate the calendar
 
-### File upload and Download
+### 6.6. File upload and Download
 
 File uploads involve sending text/keys to an input element.
 However, note that the path sent to the input element
@@ -845,7 +886,7 @@ upload_element = driver.find_element(By.ID, 'upload')
 upload_element.send_keys('/Users/dalatcoder/downloads/test.png')
 ```
 
-### Drag and Drop
+### 6.7. Drag and Drop
 
 Since drag and drops are essentially mouse actions - and
 really involve a combination of different actions - we'll
@@ -862,7 +903,7 @@ dest = driver.find_element(By.ID, 'dest')
 actions.drag_and_drop(src, dest).perform()
 ```
 
-### Sliders
+### 6.8. Sliders
 
 Sliders are an interesting form item, because they can be
 interacted with in two ways
@@ -885,7 +926,7 @@ action.move_to_element_with_offset(slider_element,X,Y).click().perform()
 action.drag_and_drop_by_offset(slider_element,X,Y).perform()
 ```
 
-### Keyboard Actions
+### 6.9. Keyboard Actions
 
 As mentioned before, ActionChains enable us to
 automate basic user interactions in the browser.
@@ -909,7 +950,7 @@ from selenium.webdriver.common.keys import Keys
 action.key_down(Keys.CONTROL).send_keys('d').release().perform()
 ```
 
-## Project: Form Filler
+## 7. Project: Form Filler
 
 Goal: fill out and submit the booking request form at
 `https://www.thegoldbugs.com/`
@@ -926,9 +967,9 @@ Goal: fill out and submit the booking request form at
 - Submit the form
 - Everything we do applies to other forms in real life - booking forms, surveys, searches, etc.
 
-## Wait
+## 8. Wait
 
-### Implicit Waits
+### 8.1. Implicit Waits
 
 Modern web pages may have elements that load at different times.
 
@@ -968,7 +1009,7 @@ driver.implicitly_wait(10)
 
 It's generally better to use explicit waits instead of implicit waits.
 
-### Explicit Waits
+### 8.2. Explicit Waits
 
 AS mentioned before, explicit waits in Selenium are more
 useful than implicit waits.
@@ -1077,7 +1118,7 @@ finally:
   driver.quit()
 ```
 
-### Adjusting Network Settings
+### 8.3. Adjusting Network Settings
 
 Sometimes you may want to emulate slower network speeds to
 better understand user experience of your site.
