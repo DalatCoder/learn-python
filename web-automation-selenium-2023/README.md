@@ -861,3 +861,26 @@ dest = driver.find_element(By.ID, 'dest')
 
 actions.drag_and_drop(src, dest).perform()
 ```
+
+### Sliders
+
+Sliders are an interesting form item, because they can be
+interacted with in two ways
+
+- Click
+- ActionChains
+
+Within ActionChains, you can use:
+
+- `move_to_element_with_offset()`
+- `drag_and_drop_by_offset()`
+
+```py
+action = ActionChains(driver=driver)
+
+X = 40 # X offset
+Y = 0 # Y offset
+
+action.move_to_element_with_offset(slider_element,X,Y).click().perform()
+action.drag_and_drop_by_offset(slider_element,X,Y).perform()
+```
