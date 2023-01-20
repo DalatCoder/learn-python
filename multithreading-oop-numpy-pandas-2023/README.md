@@ -304,3 +304,106 @@ add_item(my_list)
 # my_list changed
 print(my_list)
 ```
+
+## Multithreading Theory
+
+### What are processes and threads?
+
+Motivation behind multi-threading
+
+By default, programming languages are `sequential`, they
+execute the statements and commands one by one (line by line)
+
+```py
+init()
+download()
+initModel()
+makePrediction()
+```
+
+In single threaded application, these methods will be called one
+by one. We have to wait for them to finish one by one.
+
+It's not the best solution possible, time consuming operations
+may freeze the application and the users may not know what's
+happening!!!
+
+The most relevant reason for `multithreading` is to seperate
+multiple tasks. One ore more which is time critical and might
+be subject to interference by the execution of other tasks.
+
+For example: our stock market related software is able to download
+data from the web (Yahoo Finance for example)
+
+- It takes 2-3 mins to fetch the data BUT we want to make sure
+  the application is not frozen!!!
+- Solution: we create a distinct thread for the download operation
+  and during this procedure the user can do whatever he/she wants
+  in the application
+
+Example
+
+- Thread #1: downloading images from the web
+- Thread #2: IO operations: copying files and parse the content
+- Thread #3: Doing heavy calculations: simulations or
+  numerical methods (differential equations)
+
+Multithreading is the ability of the CPU to execute multiple
+processes or threads concurrenty. Both `process` and `threads`
+are independent sequances of execution
+
+Process
+
+- a `process` is an `instance` of program execution
+- when you open a software or web browser: there are distinct
+  process
+- the `OS` assigns distinct register, program counter,
+  stack memory and heap
+  memory to every single process
+- In Java, we can create processes with the help of
+  `ProcessBuilder` class
+
+Threads
+
+- a `thread` is a `light-weight` process
+- It is a unit of execution within a given process (a process
+  may have several threads)
+- Each thread in a process `shares` the memory and resources and
+  this is why programmers have to deal with concurrent
+  programming and multithreading (synchronization)
+- Creating a new thread requires fewer resources than creating
+  a new process
+
+Example
+
+- Process 1
+
+  - resources: registers, stack memory, heap memory, etc.
+  - #1 thread
+  - #2 thread
+  - #3 thread
+  - ...
+  - #n thread
+
+- Process 2
+  - resources: registers, stack memory, heap memory, etc.
+  - #1 thread
+  - #2 thread
+  - #3 thread
+  - ...
+  - #n thread
+
+Assume we have `k` threads (so more than `1` thread in our
+application)
+
+Somehow the single processor has to deal with all of the `k`
+threads ~ one apporach is to use `time-slicing` algorithm
+
+Processing time for a single core is shared among processes and
+threads. This is called time-slicing
+
+In this case, the CPU will run `thread #1` for a small amount
+of time then `thread #2` then again `thread #1` and then
+`thread #2` and so on...
+
+![Image](assets/thread1.png)
