@@ -844,3 +844,20 @@ For upload
 upload_element = driver.find_element(By.ID, 'upload')
 upload_element.send_keys('/Users/dalatcoder/downloads/test.png')
 ```
+
+### Drag and Drop
+
+Since drag and drops are essentially mouse actions - and
+really involve a combination of different actions - we'll
+need to use `ActionChains` again
+
+We can use a pure drag and drop with a source and target
+element. Or we can use a drag and drop with offset, starting
+at a source element
+
+```py
+src = driver.find_element(By.ID, 'src')
+dest = driver.find_element(By.ID, 'dest')
+
+actions.drag_and_drop(src, dest).perform()
+```
