@@ -703,6 +703,7 @@ ActionChains chain specific user actions together, such as
 - Clicking mouse buttons
 - Pressing keys
 - Drag and drops
+- Sliders
 - And more!
 
 ```py
@@ -720,4 +721,16 @@ action = ActionChains(driver=driver)
 action.context_click(element).preform()
 action.click_and_hold(element).perform()
 action.release().perform()
+```
+
+### Input Elements
+
+You'll usually want to fill out a form field or clear it
+
+- `input_element.clear()`
+- `input_element.send_keys('text')`
+
+```py
+input_element.clear()
+input_element.send_keys('Filling forms is cool')
 ```
