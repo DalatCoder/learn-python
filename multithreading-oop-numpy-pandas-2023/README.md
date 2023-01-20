@@ -407,3 +407,44 @@ of time then `thread #2` then again `thread #1` and then
 `thread #2` and so on...
 
 ![Image](assets/thread1.png)
+
+### The `time-slicing` algorithm
+
+![Image](assets/thread1.png)
+
+### Benefits of multithreading
+
+We can design more responsive applicatoin: we can do several
+operatioins concurrently
+
+We can achieve better resource utilization (CPU utilization
+for example). By default, every Java program is single threaded,
+there may be several processor cores which we do not utilize
+without using multiple threads
+
+Overall we can improve performance. Performance improvement has
+something to do with multiple cores and parallel computing so
+we'll discuss it in that chapter.
+
+### Downside of multithreading
+
+> Multithreading is not always better!!!
+
+Threads manipulate data located on the same memory area because
+they belong to the same process and we have to deal with this
+fact (`synchronization`)
+
+It's not easy to design multithreaded applications (easy to make
+bugs/hard to detect bugs) ~ with modern frameworks (`fork-join`).
+It's getting easier
+
+Expensive operation: switching threads is expensive. CPU has to
+save local data, application poiter etc. of the current thread
+and has to load the data of the other thread as well.
+
+It's expensive to switch between threads: this is why using
+threads is not always the fastest way possible (for example
+sorting algorithms)
+
+> Rule of thumb: for small problems, it is unnecessary to use
+> multithreading
