@@ -967,6 +967,8 @@ Goal: fill out and submit the booking request form at
 - Submit the form
 - Everything we do applies to other forms in real life - booking forms, surveys, searches, etc.
 
+Read the notebook at: [Notebook](selenium-udemy/proj2.ipynb)
+
 ## 8. Wait
 
 ### 8.1. Implicit Waits
