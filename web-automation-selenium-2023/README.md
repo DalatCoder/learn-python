@@ -684,3 +684,40 @@ Useful methods in Selenium for window size and position
 - `driver.set_window_rect()`
 - `driver.minimize_window()`
 - `driver.maximize_window()`
+
+## Automation of filling in Forms
+
+### Buttons
+
+You can interact with buttons by:
+
+- clicking - `button.click()`
+- context clicking, i.e. right-click
+- click and hold/release
+
+For things like click and hold, we need to use `ActionChains`
+
+ActionChains chain specific user actions together, such as
+
+- Moving the mouse
+- Clicking mouse buttons
+- Pressing keys
+- Drag and drops
+- And more!
+
+```py
+button = driver.find_element(By.CSS_SELECTOR, 'button#id')
+button.click()
+```
+
+Or ActionChains
+
+```py
+import selenium.webdriver.common.action_chains import ActionChains
+
+action = ActionChains(driver=driver)
+
+action.context_click(element).preform()
+action.click_and_hold(element).perform()
+action.release().perform()
+```
