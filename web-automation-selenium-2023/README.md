@@ -754,3 +754,41 @@ checkbox.is_selected()
 # select via click
 checkbox.click()
 ```
+
+### Dropdown Menus
+
+Dropdown menus are `<select>` elements in HTML. Options
+for the dropdown are contained in `<option>` tags.
+
+You can interact with the elements using the methods
+we've learned so far (selecting, click, etc.)
+
+Or, you can use a `Select` object
+
+`Select` objects in Selenium are objects that provide
+nice wrappers for dealing with select elements
+
+- `options` - show options
+- `select_by_index()`
+- `select_by_visible_text()`
+- `select_by_value()`
+
+Also can work with multiple-select menus - adds deselect methods
+
+```py
+from selenium.webdriver.support.ui import Select
+
+select_element = driver.find_element(By.ID, 'id')
+select = Select(select_element)
+
+# options
+select.options
+
+# selecting
+select.select_by_index(2)
+select.select_by_value('value1')
+
+# deselects - only for multi-selects
+select.deselect_by_index(2)
+select.deselect_all()
+```
