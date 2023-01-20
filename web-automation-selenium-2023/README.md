@@ -1076,3 +1076,21 @@ finally:
   time.sleep(4)
   driver.quit()
 ```
+
+### Adjusting Network Settings
+
+Sometimes you may want to emulate slower network speeds to
+better understand user experience of your site.
+
+Chrome DevTools does provide a Network Throttling setting in
+the Network tab. You can also automate it with the `set_network_conditions()` method
+
+`set_network_conditions()` has several parameters
+
+- Offline
+- Latency - in `ms`
+- Download throughput - in `bps`
+- Upload throughput - in `bps`
+
+By adding latency, lowering download throughput, etc. you
+can emulate slow networks.
