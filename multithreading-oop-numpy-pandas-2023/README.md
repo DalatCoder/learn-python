@@ -158,3 +158,149 @@ The heap memory (nothing concern with the `heap` data structure)
 ![Image](assets/stack3.png)
 
 ![Image](assets/stack4.png)
+
+### Garbage Collection (GC)
+
+In Python, we do not have to bother with objects on the `heap`
+memory. The garbage collectioin will remove unused objects.
+
+Where there are no active `references` from the `stack` memory to
+a given object on the heap - it becomes eligible for garbage
+collection. There are several algorithms to handle this problem
+and Python uses the so-called `reference counting` approach.
+
+Every variable in Python is a `reference` to an `object`.
+A single object may have several references (variable names)
+
+```py
+a = ['kenvin', 23, True]
+b = a
+c = b
+
+# the list object have 3 references
+```
+
+In this case, there are 3 references (a, b, c) to the same object
+(`list`).
+
+Every object in Python has an extra field - the `reference counter`
+that is increased (decreased) when a pointer to the object is
+created (removed)
+
+If the reference counter reaches zero, it means that the garbage
+collector can `remove that object` from the `heap memory`
+
+The garbage collection is the process that removes unused and
+unreferenced objects from the heap
+
+```py
+del a
+```
+
+The `del` keyword decrements the reference counter (note that there may be other references to the object)
+
+### Revisiting the types of variables
+
+Most of the variables in Python are objects
+
+How to check whether a given variable is an object or not
+
+```py
+a = 'Kenvin'
+b = 10
+c = 34.5
+d = False
+
+print(type(a))
+print(type(b))
+print(type(c))
+print(type(d))
+
+# these variables are stored in the heap memory
+print(isinstance(a, object)) # true
+print(isinstance(b, object)) # true
+print(isinstance(c, object)) # true
+print(isinstance(d, object)) # true
+```
+
+The object is stored on the heap memory, but the variable, so the
+reference is stored on the stack memory and of course the
+variable on the stack memory is pointing to the object on the
+heap memory. And in Python, most of the variables are like this.
+
+### The `==` and the `is` operator
+
+The `==` operator compares the values
+
+````py
+a = [10, 'Kevin', True, 35.6]
+b = [10, 'Kevin', True, 35.6]
+
+print(a == b) # True
+
+name1 = 'Adam Smith'
+name2 = 'Adam Smith'
+
+print(name1 == name2)
+
+The `is` operator compare the memory locations
+
+```py
+a = [10, 'Kevin', True, 35.6]
+b = [10, 'Kevin', True, 35.6]
+c = a
+
+print(a is b) # False
+print(c is a) # True
+````
+
+### Call by reference and value
+
+There is a crucial difference in programming between
+`call-by-reference` and `call-by-value`
+
+`call-by-value`: just a copy of the original variable is passed
+so the original variable will not be changed (C, C++, Java).
+
+```py
+def change(x):
+    # x is a copy of a
+    # change x, not a
+    x = x + 1
+
+a = 10
+change(a)
+print(a)
+```
+
+`call-by-reference`: the variable itself is passed so the original
+variable may be altered
+
+The Python programming language is something different: here we
+are using `pass-by-object-reference`. It depends on wheter
+the variable is `mutable` or `immutable`
+
+- `int`, `float`, `strings` are `immutable` objects in Python - this is why we are not able to change the values
+
+```py
+def change(x):
+    x = x + 1
+
+a = 10
+change(a)
+print(a)
+```
+
+- Python is able to change the values of mutable objects. Python
+  has something to do with `pass by object reference`
+
+```py
+def add_item(l):
+    l.append('This is a new item')
+
+my_list = ['kevin', 10, True]
+add_item(my_list)
+
+# my_list changed
+print(my_list)
+```
