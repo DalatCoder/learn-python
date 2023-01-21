@@ -1013,3 +1013,108 @@ even bilions of users, it's extremely crucial to control the
 number of threads manipulating the same operation. So this
 is why semaphores are extremely important concept in
 multi threading.
+
+### Inter-thread communication - event objects
+
+We can communicate between threads with Event
+
+```py
+import time
+import random
+import threading
+from threading import Thread
+
+CAPACITY = 5
+items = []
+event = threading.Event()
+
+class Producer(Thread):
+    def __init__(self, nums):
+        Thread.__init__(self)
+        self.nums = nums
+
+    def run(self):
+        while True:
+            if len(self.nums) == CAPACITY:
+                event.set()
+
+            if not event.is_set():
+                time.sleep(1)
+                self.nums.append(random.randint(1, 100))
+                print('Producer: ' + str(self.nums) + '\n')
+
+class Consumer(Thread):
+    def __init__(self, nums):
+        Thread.__init__(self)
+        self.nums = nums
+
+    def run(self):
+        while True:
+            if len(self.nums) == 0:
+                event.clear()
+
+            if event.is_set():
+                time.sleep(1)
+                self.nums.pop()
+                print('Consumer: ' + str(self.nums) + '\n')
+
+if __name__ == '__main__':
+    producer = Producer(items)
+    consumer = Consumer(items)
+
+    producer.start()
+    consumer.start()
+```
+
+### What are thread pools?
+
+Why to use thread pools?
+
+- it is not that convenient to create 100 threads, it is not
+  that easy and convenient to handle multiple threads. With the
+  help of executor and thread pools, we are able to start as many
+  threads as we want extremely easily and conveniently.
+
+- It is quite expensive operation to create and destroy threads.
+  Pools are not going to destroy threads, they will reuse them.
+
+```py
+from concurrent.futures import ThreadPoolExecutor
+
+def operation():
+    time.sleep(2)
+    print('The operation is finished...')
+
+# 4 workers
+executor = ThreadPoolExecutor(max_workers=4)
+
+# assign operation in each thread
+# 4 tasks
+executor.submit(operation)
+executor.submit(operation)
+executor.submit(operation)
+executor.submit(operation)
+
+# wait | join
+executor.shutdown()
+
+print('Finished with the tasks...')
+```
+
+Or using with the `with` keyword
+
+```py
+from concurrent.futures import ThreadPoolExecutor
+
+def operation():
+    time.sleep(2)
+    print('The operation is finished...')
+
+with ThreadPoolExecutor(max_workers=4) as executor:
+    executor.submit(operation)
+    executor.submit(operation)
+    executor.submit(operation)
+    executor.submit(operation)
+
+print('Finished with the tasks...')
+```
