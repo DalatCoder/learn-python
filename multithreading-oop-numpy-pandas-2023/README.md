@@ -780,3 +780,113 @@ def operation():
 
 
 ```
+
+### Re-entrant lock
+
+The standard `Lock` can be acquired `once` before it must be
+`released` - one the other hand. `RLock` can be acquired
+multiple times from the `same` thread (no matter that it has
+been already acquired)
+
+RLock must be `released` the same number of times it has been
+`acquired`.
+
+With `Locks`: the acquired lock can be released any thread.
+
+RLocks can be released by the thread that acquired it exclusively
+
+So
+
+- A thread cannot acquire a lock owned by another thread
+- A given thread can acquire a lock that it already owns
+- Allowing a thread to acquire the same lock more than once is
+  called `re-entrant synchronization`. And this is exactly
+  what is happening in Python with `RLocks` - the same thread may
+  acquire the lock more than once.
+
+For example: let's consider recursive method calls. If a given
+thread calls a recursive and synchronized method several times
+then it is fine (note that in this case the same thread `enter`
+the synchronized block several times). There will be no deadlock because of
+re-entrant synchronization
+
+### Using `RLock`
+
+Normal lock
+
+```py
+import threading
+from threading import Lock
+
+lock = Lock()
+
+# cannot lock multiple time
+lock.acquire()
+lock.acquire()
+
+print('Finished the operation...')
+```
+
+With the `re-entrant lock`
+
+RLock
+
+```py
+import threading
+from threading import RLock
+
+lock = RLock()
+
+# can lock multiple time
+lock.acquire()
+lock.acquire()
+
+print('Finished the operation...')
+
+lock.release()
+lock.release()
+```
+
+Concrete example
+
+```py
+class Test():
+    def __init__(self):
+        self.num1 = 1
+        self.num2 = 2
+        self.lock = RLock()
+
+    def increment_first(self):
+        with self.lock:
+            self.num1 += 1
+
+        # equal to this block of code
+        # try:
+        #     self.lock.acquire()
+        #     self.num1 += 1
+        # finally:
+        #     self.lock.release()
+
+    def increment_second(self):
+        with self.lock:
+            self.num2 += 2
+
+    def increment_both(self):
+        with self.lock
+            self.increment_first()
+            self.increment_second()
+
+        # under the hood, the acquire method will be called twice
+        # so we have to use RLock
+        # self.lock.acquire()
+        # self.lock.acquire()
+
+        # if we're not using RLock, then deadlock will occur
+        # deadlock occurs when threads are waiting for each other
+
+test = Test()
+test.increment_both()
+```
+
+With the help of the `with` keyword, we can `acquire` and `release`
+lock with just a single line of code. This is quite convenient.
