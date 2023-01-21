@@ -686,3 +686,52 @@ The main purpose of `synchronization` is the sharing of resources
 without interference with each other using `mutual exclusion`
 
 ![Image](assets/thread2.png)
+
+### Why to use Synchronization
+
+```py
+import threading
+
+x = 0
+
+def incremenet():
+    global x
+    x = x + 1
+
+def operation():
+    for _ in range(1000):
+        increment()
+
+t1 = threading.Thread(target=operation, name='#1')
+t2 = threading.Thread(target=operation, name='#2')
+
+t1.start()
+t2.start()
+
+# wait
+t1.join()
+t2.join()
+
+# expect: x = 2000
+# actual: x < 2000
+print('The value of x: ' + str(x))
+```
+
+The operation `counter = counter + 1` is not the atomic operation
+but involves multiple operations such as:
+
+- reading the number from memory
+- incrementing the value
+- writing the number to memory
+
+And
+
+- It takes some time to finish with the `increment operation`
+- During this procedure, another thread may call this method
+  as well, with the `original` counter value. So basically we
+  incremented the value of the `counter twice`, but the result
+  is going to be the `same`.
+
+And this is why it it absolutely crucial to deal with
+synchronization when dealing with multiple threads in order
+to avoid inconsistencies.
