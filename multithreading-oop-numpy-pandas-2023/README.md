@@ -735,3 +735,48 @@ And
 And this is why it it absolutely crucial to deal with
 synchronization when dealing with multiple threads in order
 to avoid inconsistencies.
+
+### Sync with `lock`
+
+Synchronization makes sure that no `2` threads execute the same
+block of code (co called `critial section`)
+
+Critial section is the part of the program where the shared
+resources are being accessed.
+
+`race condition` occurs when `2` or more threads can access these
+shared resources.
+
+The state of the variables and resources are non-deterministic
+(depends on the context swithcing of the threads)
+
+> Synchronization and locks can deal with race condition
+
+```py
+import threading
+from threading import Lock
+
+x = 0
+
+# only a one single thread may acquire the lock at the same time
+# when a lock is acquired - then other threads have to wait for
+# it to be accessible again
+lock = Lock()
+
+def increment():
+    global x
+
+    # the threads may get into BLOCKED state
+    # wait for another thread to complete
+    lock.acquire()
+    # one single thread can perform increment at the same time
+    # THIS IS THE CRITICAL SECTION
+    x += 1
+    lock.release()
+
+def operation():
+    for _ in range(1000):
+        increment()
+
+
+```
