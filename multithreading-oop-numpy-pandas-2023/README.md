@@ -448,3 +448,47 @@ sorting algorithms)
 
 > Rule of thumb: for small problems, it is unnecessary to use
 > multithreading
+
+### Multithreading implementations
+
+### Creating and stảting thread
+
+```py
+import threading
+
+print(threading.current_thread().getName())
+
+# so the mainThread will run everything sequentially
+```
+
+## Multithreading implementation
+
+### Creating and starting threads
+
+MainThread will run everything sequentially
+
+```py
+import threading
+
+print('Main Thread')
+print(threading.current_thread().getName())
+```
+
+All other threads are created by the MainThread (application thread)
+
+```py
+def count_operation():
+    for i in range(100):
+        print(thread.current_thread().getName() + ' ' + str(i))
+
+# this is sequantial execution - Options right after each other
+# count_operation()
+# count_operation()
+
+t1 = threading.Thread(target=count_operation, name='Thread1')
+t2 = threading.Thread(target=count_operation, name='Thread2')
+
+# running concurrently with time-slicing algorithm
+t1.start()
+t2.start()
+```
