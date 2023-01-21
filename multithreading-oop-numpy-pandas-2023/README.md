@@ -516,3 +516,45 @@ t2 = Counter('Thread #2')
 t1.start()
 t2.start()
 ```
+
+### Joining Threads
+
+```py
+import threading
+
+def count_operation():
+    for i in range(100):
+        print(thread.current_thread().getName() + ' ' + str(i))
+
+t1 = threading.Thread(target=counting_operation, name='Thread #1')
+t2 = threading.Thread(target=counting_operation, name='Thread #2')
+
+t1.start()
+t2.start()
+
+print('Finished with thread execution...')
+```
+
+The MainThread - it will handle everything. `Finished with thread execution...` will be printed first
+
+Use `join()` function to wait for the threads to finish execution.
+We can block the MainThread until the other threads are finished
+
+```py
+import threading
+
+def count_operation():
+    for i in range(100):
+        print(thread.current_thread().getName() + ' ' + str(i))
+
+t1 = threading.Thread(target=counting_operation, name='Thread #1')
+t2 = threading.Thread(target=counting_operation, name='Thread #2')
+
+t1.start()
+t2.start()
+
+t1.join()
+t2.join()
+
+print('Finished with thread execution...')
+```
