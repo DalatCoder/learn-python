@@ -663,3 +663,26 @@ t1.start()
 t2 = threading.Thread(target=daemon_operation, name='DaemonThread #1', daemon=True)
 t2.start()
 ```
+
+### Memory Management of threads
+
+There are `processes` and `threads` (light weight processes)
+
+The typical difference is that `threads` (of the same `process`)
+run in a `shared` memory space, while `processes` run in seperate
+memory spaces.
+
+- `stack` memory: the `local variables` and `method arguments` as
+  well as `method calls` are stored on the `stack`
+
+- `heap` memory: objects are stored on the `heap` memory and
+  `live` as long as it is `referenced` from somewhere in the
+  application
+
+> Every thread has its own stack memory but all threads
+> share the heap memory (shraed memory space)
+
+The main purpose of `synchronization` is the sharing of resources
+without interference with each other using `mutual exclusion`
+
+![Image](assets/thread2.png)
