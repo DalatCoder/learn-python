@@ -890,3 +890,126 @@ test.increment_both()
 
 With the help of the `with` keyword, we can `acquire` and `release`
 lock with just a single line of code. This is quite convenient.
+
+### What are deadlocks and Livelocks
+
+Deadlock occurs when two or more threads wait forever for
+a lock or resource held by another of the threads
+
+`deadlock` is a situation in which two or more competing actions
+are each waiting for the other to finish, and thus neither ever
+does.
+
+- Deadlock in databases
+
+Deadlock happens when two processes each within its own tracsaction
+updates two rows of information but in the opposite order
+
+For example: process `A` updates row `1` then row `2` in the
+exact timeframe that process `B` updates row `2` then row `1`.
+Which means that they try to update two rows of information, but
+in opposite order. This is when a deadlock may arise
+
+- Deadlock in operating systems
+
+Deadlock is a situation which occurs when a process or thread
+enters a waiting state because a resource requested is being
+held by another waiting process, which in turn is waiting
+for another resource held by another waiting process.
+
+LiveLock
+
+- A thread often acts in response to the action of another thread
+- If the other thread's action is also a response to the action
+  of another thread then livelock may arise
+- Livelocked threads are unable to make further progress. However,
+  the threads are not blocked: they are simply too busy responding
+  to each other to resume work.
+- Like two people attempting to pass each other in a narrow
+  corridor: `A` moves to his left to let `B` pass, while `B` moves
+  to his right to let `A` pass. They are still blocking each
+  other, `A` moves to his right, while `B` move to his left ...
+  still not good.
+
+### What are semaphores
+
+- Invented by Dijkstra back in 1962
+- Semaphores are simple variables (or abstract data types) that
+  are used for controlling access to a common resource
+- It is an important concept in operating systems as well
+
+The problem is that we have a resource and multiple threads
+trying to acquire and manipulate that given resource
+
+It is a record of how many units of a particular resource
+are available. We have to wait until a unit of the resource
+become available again.
+
+- Counting semaphors: allows an arbitrary resource count
+- Binary semaphores: semaphores that are restricted to the values
+  0 and 1
+
+Example
+
+- Suppose a library has `10` identical study rooms (it can be used
+  by a single student at a time)
+
+- students must request a study room from the front desk
+- if no rooms are free: students have to wait for rooms to be
+  available again so until someone relinquishes a given study room
+- when a student finished using the room, the student must return
+  to the front desk and indicate that one room has become free
+
+This problem can be solved with the help of a semaphore.
+
+Semaphores
+
+- Semaphores track only how many resources are free - it does not
+  keep track of which of the resources are free
+- The semaphore count may serve as a useful trigger for a number
+  of different actions (web servers)
+- producer-consumer probelm can be solved and implemented with the
+  help of semaphores
+
+### Semaphores example
+
+```py
+# HPC (high performance computing) cluster - the capacity is limited
+# only 5 users can acquire the cluster at the same time
+
+import threading
+import random
+import time
+
+semaphone = threading.Semaphore(5)
+operation_counter = 0
+
+def compute():
+    global operation_counter
+
+    semaphone.acquire()
+    print('performing heavy computation on the cluster...')
+    operation_counter += 1
+
+    # the given thread will sleep for a random of time
+    time.sleep(random.randint(3, 8))
+    print('Finished computation...')
+    semaphore.release()
+
+    operation_counter -= 1
+
+while True:
+    time.sleep(0.1)
+
+    # create as many thread as possible
+    # but only 5 threads can be run at the same time
+    # thanks to semaphores
+    t = threading.Thread(target=compute)
+    t.start()
+```
+
+So if you think of the modern applications, several milions or
+even bilions of users, it's extremely crucial to control the
+number of threads manipulating the same operation. So this
+is why semaphores are extremely important concept in
+multi threading.
