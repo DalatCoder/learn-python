@@ -574,3 +574,92 @@ t2 = threading.Thread(target=operation, name='Thread #2', args=(100,))
 t1.start()
 t2.start()
 ```
+
+### Daemon Threads
+
+Daemon Threads and Worker Threads
+
+A `thread` in Python can be so-called `daemon thread` or a
+standard `worker thread`
+
+When a Python program starts then one `thread` begins running
+immediately (`main thread`)
+
+We can create child threads from the main thread. The main thread
+is the last thread to finish execution because it performs
+various shutdown operations.
+
+`daemon` threads are intended as helper threads (for example
+barbage collection)
+
+`PVM`, python virtual machine create main thread. Then, main thread
+create other child threads
+
+```py
+import threading
+
+#PVM
+# worker threads
+print(threading.current_thread().getName())
+
+# child threads
+t1 = threading.Thread()
+t2 = threading.Thread()
+```
+
+Python Virtual Machine
+
+- MainThread: here we can create as many `worker` threads as
+  we want (child threads of the main thread)
+
+- Daemon threads: garbage collection
+
+`daemon threads` are a low priority threads that runs in
+background to perform tasks such as garbage collection. Usually
+we create daemon threads for `I/O` operations or `services` (
+smartphone services such as `NFC` or `Bluetooth` communication).
+
+Daemon threads are terminated by the PVM when all other worker
+threads are terminated (finish execution).
+
+So this is the `main difference`: worker threads are not
+terminated while daemon threads are interrupted by the PVM
+
+```py
+import threading
+
+# PVM creates the MainThread
+# daemon theads are terminated if all other normal threads finish
+# execution
+# BUT the python is not erminates if at least 1 normal thread is
+# running
+
+def normal_operation():
+    while True:
+        print('normal thread is running...')
+
+# t1 will run forever, PVM does not terminate it
+t1 = threading.Thread(target=normal_operation, name='NormalThread #1')
+t1.start()
+```
+
+```py
+import threading
+
+def normal_operation():
+    for i in range(100):
+        print('normal thread is running...')
+
+def daemon_operation():
+    while True:
+        print('daemon thread is running...')
+
+# t1 will run forever, PVM does not terminate it
+t1 = threading.Thread(target=normal_operation, name='NormalThread #1')
+t1.start()
+
+# daemon thread will be terminated by PVM once the
+# normal thread finished
+t2 = threading.Thread(target=daemon_operation, name='DaemonThread #1', daemon=True)
+t2.start()
+```
