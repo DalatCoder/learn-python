@@ -288,4 +288,22 @@ import random
 
 n = random.randint(1, 10)
 print(n)
+
+random_float = random.random()
+print(random_float)
 ```
+
+List in Python
+
+```py
+fruits = ['item1', 'item2']
+
+# access list item with index
+print(fruits[0])
+print(fruits[-1])
+
+# append new item to list
+fruits.append('item3')
+```
+
+### Project: Rock Paper Scissors
